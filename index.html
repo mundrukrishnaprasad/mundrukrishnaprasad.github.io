@@ -54,6 +54,60 @@
       --accent: #E4472B;
     }
 
+    /* Razorpay-style project cards */
+    .rpay-card {
+      background: #FFFFFF;
+      border: 1px solid var(--hairline);
+      border-radius: 18px;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .rpay-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(23, 25, 31, 0.10);
+      border-color: rgba(228, 71, 43, 0.35);
+    }
+    .rpay-card-dark { background: #171A21; border-color: #262A35; color: #ECEAE4; }
+    .rpay-card-dark:hover { border-color: #3A4050; box-shadow: 0 18px 40px rgba(23, 25, 31, 0.35); }
+    .rpay-card-tint { background: #FFEDE7; border-color: rgba(228, 71, 43, 0.25); }
+    .rpay-card-tint:hover { box-shadow: 0 18px 40px rgba(228, 71, 43, 0.18); }
+    .rpay-chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      position: absolute;
+      top: 12px; right: 12px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(23, 25, 31, .06);
+      color: #5F6673;
+    }
+    .rpay-card-dark .rpay-chip { background: rgba(255, 255, 255, .08); color: #8E95A5; }
+    .rpay-card-tint .rpay-chip { background: rgba(228, 71, 43, .12); color: #C23A22; }
+    .rpay-cap {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #5F6673;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .rpay-cap::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: #E4472B; }
+    .rpay-card-dark .rpay-cap { color: #8E95A5; }
+    .rpay-card-dark .rpay-cap::before { background: #FF6A45; }
+    .rpay-card p { font-size: .9rem; line-height: 1.6; }
+    @media (prefers-reduced-motion: reduce) {
+      .rpay-card, .rpay-card:hover { transform: none !important; }
+    }
+
     body {
       background-color: var(--bg);
       color: var(--text);
@@ -205,6 +259,9 @@
         transform: none !important;
       }
       #timeline-indicator {
+        transform: scaleY(1) !important;
+      }
+      #projects-indicator {
         transform: scaleY(1) !important;
       }
     }
@@ -561,7 +618,11 @@
 <span class="font-mono text-xs text-ink-muted">ARRAY DATA-DRIVEN</span>
 </div>
 <!-- Rendered purely via data array below: Split editorial text layout -->
-<div class="divide-y divide-hairline-light" id="projects-container">
+<div class="relative divide-y divide-hairline-light" id="projects-container">
+<!-- Scroll-drawn vertical hairline (same mechanic as Experience timeline) -->
+<div aria-hidden="true" class="hidden md:block absolute top-0 bottom-0 left-[25%] w-px bg-hairline-light pointer-events-none">
+<div class="w-full bg-[#E4472B] origin-top transition-transform duration-100 ease-out" id="projects-indicator" style="height: 100%; transform: scaleY(0);"></div>
+</div>
 <!-- Injected via JavaScript with project-row animations -->
 </div>
 </section>
@@ -889,6 +950,7 @@
       updateHeaderBorder();
       updateActiveNav();
       updateExperienceTimeline();
+      updateProjectsTimeline();
     }, { passive: true });
 
     navLinks.forEach(link => {
@@ -905,10 +967,10 @@
       const active = document.querySelector('.nav-item.text-accent-light');
       if (active) moveNavIndicator(active, true);
     }
-    window.addEventListener('resize', () => { repositionNavIndicator(); updateExperienceTimeline(); });
-    window.addEventListener('load', () => { repositionNavIndicator(); updateExperienceTimeline(); });
+    window.addEventListener('resize', () => { repositionNavIndicator(); updateExperienceTimeline(); updateProjectsTimeline(); });
+    window.addEventListener('load', () => { repositionNavIndicator(); updateExperienceTimeline(); updateProjectsTimeline(); });
     if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(() => { repositionNavIndicator(); updateExperienceTimeline(); });
+      document.fonts.ready.then(() => { repositionNavIndicator(); updateExperienceTimeline(); updateProjectsTimeline(); });
     }
 
     // 3. EXPERIENCE TIMELINE VERTICAL HAIRLINE DRAW
@@ -1045,20 +1107,21 @@
               </h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-              <div class="space-y-1">
-                <span class="font-mono text-xs uppercase text-ink-muted block">Problem</span>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <div class="rpay-card">
+                <span class="rpay-chip">${p.stack[0]}</span>
+                <span class="rpay-cap">Problem</span>
                 <p class="text-ink-primary leading-relaxed">${p.problem}</p>
               </div>
-
-              <div class="space-y-1">
-                <span class="font-mono text-xs uppercase text-ink-muted block">My Role</span>
-                <p class="text-ink-muted leading-relaxed">${p.role}</p>
+              <div class="rpay-card rpay-card-dark">
+                <span class="rpay-chip">${p.stack[1] || 'Build'}</span>
+                <span class="rpay-cap">My Role</span>
+                <p style="color:#B9BFCB">${p.role}</p>
               </div>
-
-              <div class="space-y-1">
-                <span class="font-mono text-xs uppercase text-ink-muted block">Result</span>
-                <p class="text-ink-muted leading-relaxed">${p.result}</p>
+              <div class="rpay-card rpay-card-tint">
+                <span class="rpay-chip">${p.stack[2] || p.stack[0]}</span>
+                <span class="rpay-cap">Result</span>
+                <p class="text-ink-primary leading-relaxed">${p.result}</p>
               </div>
             </div>
 
@@ -1078,6 +1141,30 @@
         </article>
       `;
     }).join('');
+
+    // 5b. Projects vertical scroll line — gray track + red draw that fills
+    // automatically with scroll (same mechanic as the Experience timeline)
+    const projSection = document.getElementById('projects');
+    const projIndicator = document.getElementById('projects-indicator');
+
+    function updateProjectsTimeline() {
+      if (!projSection || !projIndicator) return;
+
+      // Stretch the track so it reaches the section's bottom divider
+      const track = projIndicator.parentElement;
+      if (track) {
+        const secRect = projSection.getBoundingClientRect();
+        const tlRect = track.parentElement.getBoundingClientRect();
+        const extra = Math.max(0, Math.round(secRect.bottom - tlRect.bottom));
+        const wantHeight = `calc(100% + ${extra}px)`;
+        if (track.style.height !== wantHeight) track.style.height = wantHeight;
+      }
+
+      const rect = projSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const progress = Math.max(0, Math.min(1, (windowHeight * 1.02 - rect.top) / rect.height));
+      projIndicator.style.transform = `scaleY(${progress})`;
+    }
 
     // 6. Certifications Array
     const certifications = [
