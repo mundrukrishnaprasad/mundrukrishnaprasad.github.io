@@ -830,10 +830,19 @@
       }
     }
 
-    function moveNavIndicator(targetLink) {
+    function moveNavIndicator(targetLink, instant = false) {
       if (!targetLink || !navIndicator) return;
       const rect = targetLink.getBoundingClientRect();
       const parentRect = targetLink.parentElement.getBoundingClientRect();
+      if (instant) {
+        navIndicator.style.transition = 'none';
+        navIndicator.style.left = `${rect.left - parentRect.left}px`;
+        navIndicator.style.width = `${rect.width}px`;
+        navIndicator.style.opacity = '1';
+        void navIndicator.offsetHeight; // commit now — no 300ms slide drift
+        navIndicator.style.transition = '';
+        return;
+      }
       navIndicator.style.left = `${rect.left - parentRect.left}px`;
       navIndicator.style.width = `${rect.width}px`;
       navIndicator.style.opacity = '1';
@@ -865,7 +874,7 @@
       });
 
       if (activeItem) {
-        moveNavIndicator(activeItem);
+        moveNavIndicator(activeItem, true); // snap instantly on scroll — the 300ms slide was landing mid-flight
       } else if (window.scrollY < 200) {
         if (navIndicator) navIndicator.style.opacity = '0';
       }
@@ -885,6 +894,17 @@
     document.getElementById('desktop-nav')?.addEventListener('mouseleave', () => {
       updateActiveNav();
     });
+
+    // Re-sync after webfont swap & window resize so the bar never sits off its label
+    function repositionNavIndicator() {
+      const active = document.querySelector('.nav-item.text-accent-light');
+      if (active) moveNavIndicator(active, true);
+    }
+    window.addEventListener('resize', repositionNavIndicator);
+    window.addEventListener('load', repositionNavIndicator);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(repositionNavIndicator);
+    }
 
     // 3. EXPERIENCE TIMELINE VERTICAL HAIRLINE DRAW
     const expSection = document.getElementById('experience');
