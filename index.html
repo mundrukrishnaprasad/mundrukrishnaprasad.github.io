@@ -229,7 +229,7 @@
 <a class="nav-item text-ink-muted hover:text-accent-light transition-colors py-1 relative z-10" data-section="education" href="#education">Education</a>
 <a class="nav-item text-ink-muted hover:text-accent-light transition-colors py-1 relative z-10" data-section="contact" href="#contact">Contact</a>
 <!-- Sliding underline indicator -->
-<div aria-hidden="true" class="absolute bottom-0 h-[1.5px] bg-[#E4472B] transition-all duration-300 pointer-events-none opacity-0" id="nav-indicator" style="left: 0; width: 0; transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);"></div>
+<div aria-hidden="true" class="absolute bottom-0 h-[1.5px] bg-[#E4472B] transition-all duration-300 pointer-events-none opacity-0" id="nav-indicator" style="left: 0; width: 0; margin: 0; transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);"></div>
 </nav>
 <!-- Utility triggers: Command Palette + Mobile Toggle -->
 <div class="flex items-center gap-3">
@@ -832,19 +832,24 @@
 
     function moveNavIndicator(targetLink, instant = false) {
       if (!targetLink || !navIndicator) return;
-      const rect = targetLink.getBoundingClientRect();
-      const parentRect = targetLink.parentElement.getBoundingClientRect();
+      // offsetLeft/offsetWidth are relative to the <nav> (offsetParent) — immune to
+      // spacing margins and font-layout surprises; also zero our own margin so the
+      // `space-x-8` rule can never push the bar sideways again.
+      const left = targetLink.offsetLeft;
+      const width = targetLink.offsetWidth;
       if (instant) {
         navIndicator.style.transition = 'none';
-        navIndicator.style.left = `${rect.left - parentRect.left}px`;
-        navIndicator.style.width = `${rect.width}px`;
+        navIndicator.style.marginLeft = '0';
+        navIndicator.style.left = `${left}px`;
+        navIndicator.style.width = `${width}px`;
         navIndicator.style.opacity = '1';
         void navIndicator.offsetHeight; // commit now — no 300ms slide drift
         navIndicator.style.transition = '';
         return;
       }
-      navIndicator.style.left = `${rect.left - parentRect.left}px`;
-      navIndicator.style.width = `${rect.width}px`;
+      navIndicator.style.marginLeft = '0';
+      navIndicator.style.left = `${left}px`;
+      navIndicator.style.width = `${width}px`;
       navIndicator.style.opacity = '1';
     }
 
