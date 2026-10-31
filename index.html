@@ -905,10 +905,10 @@
       const active = document.querySelector('.nav-item.text-accent-light');
       if (active) moveNavIndicator(active, true);
     }
-    window.addEventListener('resize', repositionNavIndicator);
-    window.addEventListener('load', repositionNavIndicator);
+    window.addEventListener('resize', () => { repositionNavIndicator(); updateExperienceTimeline(); });
+    window.addEventListener('load', () => { repositionNavIndicator(); updateExperienceTimeline(); });
     if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(repositionNavIndicator);
+      document.fonts.ready.then(() => { repositionNavIndicator(); updateExperienceTimeline(); });
     }
 
     // 3. EXPERIENCE TIMELINE VERTICAL HAIRLINE DRAW
@@ -917,6 +917,18 @@
 
     function updateExperienceTimeline() {
       if (!expSection || !timelineIndicator) return;
+
+      // Stretch the vertical track so it reaches the section's bottom divider —
+      // otherwise it ends at the last job's content and leaves a beige gap after it.
+      const track = timelineIndicator.parentElement;
+      if (track) {
+        const secRect = expSection.getBoundingClientRect();
+        const tlRect = track.parentElement.getBoundingClientRect();
+        const extra = Math.max(0, Math.round(secRect.bottom - tlRect.bottom));
+        const wantHeight = `calc(100% + ${extra}px)`;
+        if (track.style.height !== wantHeight) track.style.height = wantHeight;
+      }
+
       const rect = expSection.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
