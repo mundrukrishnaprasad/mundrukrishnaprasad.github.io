@@ -286,7 +286,7 @@
 <!-- Monumental Greeting + Name with masked reveal & balanced typography -->
 <div class="mask-reveal mb-8 sm:mb-12">
 <h1 class="mask-inner delay-2 font-display uppercase font-normal text-ink-primary hero-monumental select-none">
-<span class="inline-block transition-opacity duration-300" id="dynamic-greeting" style="opacity: 1;">Hello</span>, <span class="block sm:inline">I'm Krishnaprasad.</span>
+<span class="inline-block transition-opacity duration-300" id="dynamic-greeting" style="opacity: 1;">Good evening</span>, <span class="block sm:inline">I'm Krishnaprasad.</span>
 </h1>
 </div>
 <!-- Lead Narrative Sentence -->
@@ -778,10 +778,8 @@
         return "Good morning";
       } else if (hour >= 12 && hour < 17) {
         return "Good afternoon";
-      } else if (hour >= 17 && hour < 21) {
-        return "Good evening";
       } else {
-        return "Hello"; // 21:00-04:59 (no "good night")
+        return "Good evening"; // 17:00-04:59 (late night also shows "Good evening" — no "Hello")
       }
     }
 
