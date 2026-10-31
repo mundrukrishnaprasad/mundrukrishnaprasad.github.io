@@ -1,265 +1,1204 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- ✏️ EDIT: Update title and description below -->
-  <title>Krishna Prasad · Full Stack Developer</title>
-  <meta name="description" content="Portfolio of Krishna Prasad — Full Stack Developer. Interactive projects, skills and contact." />
-  <meta property="og:title" content="Krishna Prasad · Full Stack Developer" />
-  <meta property="og:description" content="Full Stack Developer portfolio — interactive projects, skills and contact." />
-  <meta property="og:type" content="website" />
-  <link rel="stylesheet" href="style.css" />
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mundru Krishnaprasad — Software Developer</title>
+<meta content="Personal portfolio of Mundru Krishnaprasad, software developer specializing in full-stack web applications, Chrome extensions, and LLM integrations." name="description"/>
+<!-- Typography: Instrument Serif, Fraunces, Geist, JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&amp;family=Geist:wght@300;400;500;600&amp;family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Instrument Serif"', 'Fraunces', 'serif'],
+            serif: ['Fraunces', 'serif'],
+            sans: ['Geist', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            paper: {
+              light: '#F6F4EF',
+              surface: '#FFFFFF',
+              dark: '#111318',
+              surfaceDark: '#171A21',
+              darkContrast: '#14171F'
+            },
+            ink: {
+              primary: '#17191F',
+              muted: '#5F6673'
+            },
+            hairline: {
+              light: '#E2DED5'
+            },
+            accent: {
+              light: '#E4472B' // Vermilion
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    :root {
+      --bg: #F6F4EF;
+      --surface: #FFFFFF;
+      --text: #17191F;
+      --muted: #5F6673;
+      --hairline: #E2DED5;
+      --accent: #E4472B;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Geist', sans-serif;
+      overflow-x: hidden;
+      overflow-wrap: anywhere;
+    }
+
+    .hairline-b { border-bottom: 1px solid var(--hairline); }
+    .hairline-t { border-top: 1px solid var(--hairline); }
+    .hairline-r { border-right: 1px solid var(--hairline); }
+    .hairline-l { border-left: 1px solid var(--hairline); }
+
+    .editorial-link {
+      position: relative;
+      text-decoration: none;
+      transition: color 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .editorial-link::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      bottom: -1px;
+      left: 0;
+      background-color: currentColor;
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @media (hover: hover) {
+      .editorial-link:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+      .hover-shift {
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+      .hover-shift:hover {
+        transform: translateY(-1.5px);
+      }
+    }
+
+    *:focus-visible {
+      outline: 1px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Fluid monumental typography */
+    .hero-monumental {
+      font-size: clamp(3.25rem, 8.5vw, 7.8rem);
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+
+    /* Backdrop blur modal */
+    dialog::backdrop {
+      background: rgba(17, 19, 24, 0.65);
+      backdrop-filter: blur(4px);
+    }
+
+    /* RESTRAINED MOTION SYSTEM */
+    .mask-reveal {
+      overflow: hidden;
+      display: block;
+    }
+    .mask-inner {
+      display: block;
+      transform: translateY(105%);
+      opacity: 0.001;
+      transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform, opacity;
+    }
+    .page-loaded .mask-inner {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+    .delay-1 { transition-delay: 0.04s; }
+    .delay-2 { transition-delay: 0.13s; }
+    .delay-3 { transition-delay: 0.22s; }
+    .delay-4 { transition-delay: 0.31s; }
+    .delay-5 { transition-delay: 0.40s; }
+
+    /* Scroll Inview Reveal (Fade + rise 20px) */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform, opacity;
+    }
+    .reveal-on-scroll.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Project row hover motion */
+    .project-row {
+      transition: background-color 0.25s ease;
+    }
+    .project-numeral {
+      transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: color;
+    }
+    .project-content {
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+    @media (hover: hover) {
+      .project-row:hover .project-numeral {
+        color: var(--accent) !important;
+      }
+      .project-row:hover .project-content {
+        transform: translateX(6px);
+      }
+    }
+
+    /* Mobile drawer stagger */
+    .mobile-drawer-link {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .mobile-drawer-open .mobile-drawer-link {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* PREFERS-REDUCED-MOTION (Strict Fallback) */
+    @media (prefers-reduced-motion: reduce) {
+      .mask-inner,
+      .reveal-on-scroll,
+      .project-content,
+      .mobile-drawer-link,
+      .hover-shift {
+        transform: none !important;
+        transition: opacity 0.2s ease !important;
+      }
+      .mask-inner {
+        opacity: 1 !important;
+      }
+      .reveal-on-scroll {
+        opacity: 1 !important;
+      }
+      .mobile-drawer-link {
+        opacity: 1 !important;
+      }
+      .project-row:hover .project-content {
+        transform: none !important;
+      }
+      #timeline-indicator {
+        transform: scaleY(1) !important;
+      }
+    }
+  </style>
 </head>
-<body>
-
-  <!-- ========== PRELOADER ========== -->
-  <div class="loader" id="loader">
-    <div class="loader-inner">
-      <span class="loader-count" id="loaderCount">00</span>
-      <span class="loader-label">rendering…</span>
-    </div>
-  </div>
-
-  <!-- ========== NAV ========== -->
-  <nav class="nav">
-    <div class="nav-inner container">
-      <a href="#home" class="logo">KP<span>.</span></a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home" class="active">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#stack">Stack</a></li>
-        <li><a href="#projects">Work</a></li>
-        <li><a href="#updates">Updates</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li>
-          <a href="https://github.com/mundrukrishnaprasad" target="_blank" rel="noopener" class="btn btn-sm btn-outline">GitHub ↗</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- ========== HERO ========== -->
-  <header class="hero" id="home">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-
-    <div class="container hero-inner">
-      <div class="hero-badge reveal">✅ <span>Available for opportunities</span></div>
-
-      <h1 class="hero-title">
-        <span class="ht-line reveal">Full&nbsp;Stack</span>
-        <span class="ht-line ht-outline reveal">Interactive</span>
-        <span class="ht-line reveal">Developer<span class="ht-dot">.</span></span>
-      </h1>
-
-      <div class="hero-foot reveal">
-        <!-- ✏️ EDIT: one-line pitch about yourself -->
-        <p class="hero-tag">
-          I'm <strong>Krishna Prasad</strong> — building web apps end to end, from pixel-perfect
-          frontends to containerized backends. Now at a Google Virtual AI/ML internship — training image models.
-        </p>
-        <div class="avatar" aria-hidden="true">KP</div>
+<body class="selection:bg-[#E4472B] selection:text-white antialiased min-h-screen flex flex-col justify-between">
+<!-- Skip Link -->
+<a class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-3 focus:py-1.5 focus:bg-ink-primary focus:text-white text-xs font-mono" href="#main-content">
+    Skip to main content
+  </a>
+<!-- Header / Nav (Border toggled dynamically on scroll > 8px) -->
+<header class="sticky top-0 z-40 bg-[#F6F4EF]/95 backdrop-blur transition-colors duration-200" id="site-header">
+<div class="max-w-[1280px] mx-auto px-6 lg:px-10 h-14 flex items-center justify-between">
+<!-- Empty spacer on the left to maintain balanced alignment (No logo/name per guidelines) -->
+<div class="w-10"></div>
+<!-- Desktop Nav - Plain labels only with sliding active indicator bar -->
+<nav aria-label="Main Navigation" class="relative hidden md:flex items-center space-x-8 text-xs font-mono py-1" id="desktop-nav">
+<a class="nav-item text-ink-muted hover:text-accent-light transition-colors py-1 relative z-10" data-section="about" href="#about">About</a>
+<a class="nav-item text-ink-muted hover:text-accent-light transition-colors py-1 relative z-10" data-section="experience" href="#experience">Experience</a>
+<a class="nav-item text-ink-muted hover:text-accent-light transition-colors py-1 relative z-10" data-section="skills" href="#skills">Skills</a>
+<a class="nav-item text-ink-muted hover:text-accent-light transition-colors py-1 relative z-10" data-section="projects" href="#projects">Projects</a>
+<a class="nav-item text-ink-muted hover:text-accent-light transition-colors py-1 relative z-10" data-section="education" href="#education">Education</a>
+<a class="nav-item text-ink-muted hover:text-accent-light transition-colors py-1 relative z-10" data-section="contact" href="#contact">Contact</a>
+<!-- Sliding underline indicator -->
+<div aria-hidden="true" class="absolute bottom-0 h-[1.5px] bg-[#E4472B] transition-all duration-300 pointer-events-none opacity-0" id="nav-indicator" style="left: 0; width: 0; transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);"></div>
+</nav>
+<!-- Utility triggers: Command Palette + Mobile Toggle -->
+<div class="flex items-center gap-3">
+<!-- Palette hint trigger -->
+<button class="hidden sm:inline-flex items-center gap-2 px-2.5 py-1 text-[11px] font-mono border border-hairline-light rounded text-ink-muted hover:text-ink-primary hover:border-ink-muted transition-colors hover-shift" id="palette-trigger" type="button">
+<span>Jump</span>
+<kbd class="px-1 py-0.2 bg-black/5 rounded text-[10px] text-accent-light">/</kbd>
+</button>
+<!-- Mobile Menu Button -->
+<button aria-expanded="false" aria-label="Toggle navigation menu" class="md:hidden p-1.5 text-ink-primary border border-hairline-light rounded hover:bg-black/5 transition-colors" id="mobile-menu-btn" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<line x1="4" x2="20" y1="12" y2="12"></line>
+<line x1="4" x2="20" y1="6" y2="6"></line>
+<line x1="4" x2="20" y1="18" y2="18"></line>
+</svg>
+</button>
+</div>
+</div>
+<!-- Mobile Overlay / Drawer with staggered rising links -->
+<div class="hidden fixed inset-0 z-50 bg-[#F6F4EF] px-6 py-6 font-mono text-base flex flex-col justify-between transition-opacity duration-300 opacity-0" id="mobile-menu">
+<div>
+<div class="flex items-center justify-between border-b border-hairline-light pb-4 mb-8">
+<span class="text-xs uppercase tracking-wider text-accent-light font-semibold">Menu</span>
+<button aria-label="Close navigation menu" class="p-2 text-ink-primary hover:text-accent-light" id="mobile-menu-close">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<line x1="18" x2="6" y1="6" y2="18"></line>
+<line x1="6" x2="18" y1="6" y2="18"></line>
+</svg>
+</button>
+</div>
+<nav class="space-y-6 text-sm" id="mobile-nav-links">
+<a class="block text-ink-primary hover:text-accent-light mobile-link mobile-drawer-link" href="#about" style="transition-delay: 50ms;">About</a>
+<a class="block text-ink-primary hover:text-accent-light mobile-link mobile-drawer-link" href="#experience" style="transition-delay: 100ms;">Experience</a>
+<a class="block text-ink-primary hover:text-accent-link mobile-link mobile-drawer-link" href="#skills" style="transition-delay: 150ms;">Skills</a>
+<a class="block text-ink-primary hover:text-accent-light mobile-link mobile-drawer-link" href="#projects" style="transition-delay: 200ms;">Projects</a>
+<a class="block text-ink-primary hover:text-accent-light mobile-link mobile-drawer-link" href="#education" style="transition-delay: 250ms;">Education</a>
+<a class="block text-accent-light font-semibold mobile-link mobile-drawer-link" href="#contact" style="transition-delay: 300ms;">Contact</a>
+</nav>
+</div>
+<div class="pt-6 border-t border-hairline-light text-xs text-ink-muted">
+        Press Jump "/" or select any destination.
       </div>
-
-      <div class="hero-cta reveal">
-        <a href="#projects" class="btn">Explore my work ↓</a>
-        <!-- ✏️ EDIT: replace mailto with your Calendly link when ready -->
-        <a href="mailto:kp489292@gmail.com?subject=Hello%20Krishna" class="btn btn-outline">Book a chat ↗</a>
-      </div>
-
-      <!-- ✏️ EDIT: your real numbers -->
-      <div class="hero-stats reveal">
-        <div><strong>2023</strong><span>started building</span></div>
-        <div><strong>6+</strong><span>projects shipped</span></div>
-        <div><strong>10+</strong><span>technologies</span></div>
-      </div>
-    </div>
-  </header>
-
-  <!-- ========== TICKER ========== -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track">
-      <span>HTML&nbsp;·&nbsp;CSS&nbsp;·&nbsp;JavaScript&nbsp;·&nbsp;React&nbsp;·&nbsp;Node.js&nbsp;·&nbsp;Python&nbsp;·&nbsp;Docker&nbsp;·&nbsp;Git&nbsp;·&nbsp;MySQL&nbsp;·&nbsp;MongoDB&nbsp;·&nbsp;REST&nbsp;APIs&nbsp;·&nbsp;CI/CD&nbsp;·&nbsp;Machine&nbsp;Learning&nbsp;·&nbsp;AI/ML&nbsp;·&nbsp;</span>
-      <span>HTML&nbsp;·&nbsp;CSS&nbsp;·&nbsp;JavaScript&nbsp;·&nbsp;React&nbsp;·&nbsp;Node.js&nbsp;·&nbsp;Python&nbsp;·&nbsp;Docker&nbsp;·&nbsp;Git&nbsp;·&nbsp;MySQL&nbsp;·&nbsp;MongoDB&nbsp;·&nbsp;REST&nbsp;APIs&nbsp;·&nbsp;CI/CD&nbsp;·&nbsp;Machine&nbsp;Learning&nbsp;·&nbsp;AI/ML&nbsp;·&nbsp;</span>
-    </div>
-  </div>
-
-  <!-- ========== ABOUT ========== -->
-  <section class="section" id="about">
-    <div class="container">
-      <p class="kicker reveal">01 — about</p>
-      <h2 class="section-title reveal">Building since <span class="grad">day&nbsp;one</span> 🔥</h2>
-      <div class="about-grid">
-        <!-- ✏️ EDIT: your real story -->
-        <p class="about-lead reveal">
-          I'm <strong>Mundru Krishna Prasad</strong> — master's student &amp; full stack developer,
-          with hands-on training from a <strong>Google Virtual AI/ML internship</strong>,
-          building image models. I build across the stack — clean UIs, solid APIs, and
-          containerized deployments — and I'm now blending web development with AI/ML.
-        </p>
-        <!-- ✏️ EDIT: related experience pills -->
-        <div class="pill-wrap reveal">
-          <p class="pill-label">related experience</p>
-          <div class="pills">
-            <span>Fullstack Development</span>
-            <span>UX best practices</span>
-            <span>DevOps · Docker</span>
-            <span>Product Development</span>
-            <span>Cybersecurity basics</span>
-            <span>Project Management</span>
-          </div>
+</div>
+</header>
+<main class="flex-1 max-w-[1280px] w-full mx-auto px-6 lg:px-10" id="main-content">
+<!-- HERO SECTION (Pure Typographic Statement - Time-based greeting with blur-free crossfade) -->
+<section class="pt-12 sm:pt-20 pb-16 lg:pb-24 hairline-b" id="hero">
+<!-- Overline with masked reveal -->
+<div class="mask-reveal mb-4 sm:mb-6">
+<div class="mask-inner delay-1 font-mono text-xs uppercase tracking-wider text-accent-light font-medium">
+          SOFTWARE DEVELOPER · FULL-STACK
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== STACK ========== -->
-  <section class="section section-alt" id="stack">
-    <div class="container">
-      <p class="kicker reveal">02 — stack</p>
-      <h2 class="section-title reveal">Core <span class="grad">tools</span></h2>
-      <div class="stack-grid">
-        <!-- ✏️ EDIT: your actual core stack -->
-        <div class="stack-card reveal"><h4>Frontend</h4><p>HTML · CSS · JavaScript · React</p></div>
-        <div class="stack-card reveal"><h4>Backend</h4><p>Node.js · Python · REST APIs</p></div>
-        <div class="stack-card reveal"><h4>DevOps</h4><p>Docker · Git · CI/CD</p></div>
-        <div class="stack-card reveal"><h4>Databases</h4><p>MySQL · MongoDB</p></div>
-        <div class="stack-card reveal"><h4>AI / ML</h4><p>Image models · LLM basics · Python</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== PROJECTS — 3D RING ========== -->
-  <section class="section ring-section" id="projects">
-    <div class="container">
-      <p class="kicker reveal">03 — work</p>
-      <h2 class="section-title reveal">Drag <span class="grad">to explore</span></h2>
-      <p class="ring-hint reveal">◁ drag the ring · click a card to open ▷</p>
-
-      <div class="ring-stage reveal">
-        <div class="ring" id="ring">
-          <!-- ✏️ EDIT: replace with YOUR projects + data-href links -->
-          <div class="ring-card" data-href="https://github.com/mundrukrishnaprasad">
-            <span class="rc-num">01</span>
-            <h4>Docker First Project</h4>
-            <p>Containerized app setup — images, containers &amp; compose workflow.</p>
-            <div class="rc-tags"><span>Docker</span><span>CI/CD</span></div>
+</div>
+<!-- Monumental Greeting + Name with masked reveal & balanced typography -->
+<div class="mask-reveal mb-8 sm:mb-12">
+<h1 class="mask-inner delay-2 font-display uppercase font-normal text-ink-primary hero-monumental select-none">
+<span class="inline-block transition-opacity duration-300" id="dynamic-greeting" style="opacity: 1;">Hello</span>, <span class="block sm:inline">I'm Krishnaprasad.</span>
+</h1>
+</div>
+<!-- Lead Narrative Sentence -->
+<div class="mask-reveal mb-10">
+<p class="mask-inner delay-3 font-serif italic text-2xl sm:text-3xl lg:text-4xl text-ink-primary font-light max-w-4xl leading-tight">
+          I build web apps, Chrome extensions, and AI features with React, Next.js, and Cloudflare Workers.
+        </p>
+</div>
+<!-- Action Row -->
+<div class="mask-reveal">
+<div class="mask-inner delay-4 flex flex-wrap items-center gap-x-8 gap-y-4 pt-2 font-mono text-xs">
+<a class="inline-flex items-center gap-2 px-5 py-2.5 bg-ink-primary text-white rounded font-medium hover:opacity-90 transition-opacity hover-shift" download="Mundru_Krishnaprasad_Resume.pdf" href="/public/resume.pdf">
+<span>Download Resume</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+<polyline points="7 10 12 15 17 10"></polyline>
+<line x1="12" x2="12" y1="15" y2="3"></line>
+</svg>
+</a>
+<a class="inline-flex items-center gap-1.5 text-ink-primary editorial-link font-medium hover:text-accent-light" href="#projects">
+<span>View Projects</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<line x1="7" x2="17" y1="17" y2="7"></line>
+<polyline points="7 7 17 7 17 17"></polyline>
+</svg>
+</a>
+<div class="h-4 w-px bg-hairline-light hidden sm:block"></div>
+<a class="text-ink-muted hover:text-accent-light inline-flex items-center gap-1 editorial-link" href="https://linkedin.com/in/" rel="noopener noreferrer" target="_blank">
+          LinkedIn <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"></path></svg>
+</a>
+<a class="text-ink-muted hover:text-accent-light inline-flex items-center gap-1 editorial-link" href="https://github.com/" rel="noopener noreferrer" target="_blank">
+          GitHub <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"></path></svg>
+</a>
+<a class="text-accent-light inline-flex items-center gap-1 editorial-link" href="mailto:mselfkrishna@gmail.com">
+          mselfkrishna@gmail.com
+        </a>
+</div>
+</div>
+<!-- 4-Column Editorial Info Bar -->
+<div class="mask-reveal mt-14">
+<div class="mask-inner delay-5 pt-6 hairline-t grid grid-cols-2 md:grid-cols-4 gap-6 font-mono text-xs">
+<!-- Col 1: Status -->
+<div class="space-y-1">
+<span class="text-ink-muted uppercase block text-[11px]">Status</span>
+<div class="flex items-center gap-2 text-ink-primary font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+<span>Open to opportunities</span>
+</div>
+</div>
+<!-- Col 2: Location -->
+<div class="space-y-1">
+<span class="text-ink-muted uppercase block text-[11px]">Location</span>
+<div class="text-ink-primary font-medium">
+            Andhra Pradesh, India
           </div>
-          <div class="ring-card" data-href="https://github.com/mundrukrishnaprasad">
-            <span class="rc-num">02</span>
-            <h4>Accenture Code 1</h4>
-            <p>Web development project built during the Accenture program.</p>
-            <div class="rc-tags"><span>HTML</span><span>JS</span></div>
+</div>
+<!-- Col 3: Live IST Clock -->
+<div class="space-y-1">
+<span class="text-ink-muted uppercase block text-[11px]">Local Time (Asia/Kolkata)</span>
+<div class="text-ink-primary font-medium tabular-nums" id="live-clock">
+            01:54:12 PM IST
           </div>
-          <div class="ring-card" data-href="https://mundrukrishnaprasad.github.io">
-            <span class="rc-num">03</span>
-            <h4>This Portfolio</h4>
-            <p>Interactive site you're looking at right now.</p>
-            <div class="rc-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
+</div>
+<!-- Col 4: Current Focus -->
+<div class="space-y-1">
+<span class="text-ink-muted uppercase block text-[11px]">Current Focus</span>
+<div class="text-ink-primary font-medium">
+            LLMs, Chrome MV3, real-time apps
           </div>
-          <div class="ring-card" data-href="https://github.com/mundrukrishnaprasad">
-            <span class="rc-num">04</span>
-            <h4>AI Notes Assistant</h4>
-            <p>Placeholder — RAG-powered notes app in progress. Swap with your project.</p>
-            <div class="rc-tags"><span>Python</span><span>AI</span></div>
-          </div>
-          <div class="ring-card" data-href="https://github.com/mundrukrishnaprasad">
-            <span class="rc-num">05</span>
-            <h4>E-Commerce UI</h4>
-            <p>Placeholder — storefront interface concept. Swap with your project.</p>
-            <div class="rc-tags"><span>React</span><span>UI</span></div>
-          </div>
-          <div class="ring-card" data-href="https://github.com/mundrukrishnaprasad">
-            <span class="rc-num">06</span>
-            <h4>Your Next Project</h4>
-            <p>Coming soon 🚀 — I ship continuously, check GitHub for the latest.</p>
-            <div class="rc-tags"><span>Full&nbsp;Stack</span></div>
-          </div>
-        </div>
-        <div class="ring-counter"><span id="ringIndex">00</span>/<span id="ringTotal">06</span></div>
-      </div>
-
-      <div class="center reveal">
-        <a href="https://github.com/mundrukrishnaprasad" target="_blank" rel="noopener" class="btn btn-outline">See all repos on GitHub ↗</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SPOTLIGHT ========== -->
-  <section class="section section-alt" id="spotlight">
-    <div class="container">
-      <p class="kicker reveal">04 — spotlight</p>
-      <h2 class="section-title reveal">Open source <span class="grad">spotlight</span></h2>
-      <div class="spotlight-card reveal">
-        <!-- ✏️ EDIT: feature your best public repo here -->
-        <div>
-          <h3>This Portfolio Website</h3>
-          <p>
-            Built with plain HTML, CSS and JavaScript — no frameworks, no build step.
-            Deployed free on GitHub Pages. Clone it, remix it, make it yours.
+</div>
+</div>
+</div>
+</section>
+<!-- 01 / ABOUT SECTION -->
+<section class="py-16 sm:py-24 hairline-b reveal-on-scroll" id="about">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+<!-- Left: Heading & Narrative Paragraph -->
+<div class="lg:col-span-7 space-y-6">
+<span class="font-mono text-xs uppercase tracking-wider text-accent-light">01 / ABOUT</span>
+<h2 class="font-serif text-3xl sm:text-4xl text-ink-primary font-light leading-snug">
+            Developer background &amp; engineering focus
+          </h2>
+<p class="text-base sm:text-lg text-ink-primary leading-relaxed font-light max-w-[68ch]">
+            I'm a software developer with one year of professional experience in full-stack development, LLM integration, browser extensions, and cloud services. At LeadSource Tech I worked on AI-generated messaging, a Manifest V3 Chrome extension, a Cloudflare Workers backend, WebSockets, and Razorpay payments. I like fixing hard bugs and learning new tools.
           </p>
-          <div class="badges">
-            <span class="badge">▪ html</span>
-            <span class="badge">▪ css</span>
-            <span class="badge">▪ javascript</span>
+<p class="text-sm text-ink-muted leading-relaxed max-w-[68ch]">
+            My work focuses on deterministic browser workflows, low-latency edge compute pipelines, and responsive frontend architectures built for dependable everyday use.
+          </p>
+</div>
+<!-- Right: Clean Hairline Table / Definition List -->
+<div class="lg:col-span-5 flex flex-col justify-center">
+<div class="border-t lg:border-t-0 lg:hairline-l border-hairline-light lg:pl-10 divide-y divide-hairline-light font-mono text-xs">
+<div class="py-4 flex justify-between items-baseline gap-4 reveal-child" style="transition-delay: 60ms;">
+<span class="text-ink-muted uppercase">Location</span>
+<span class="text-ink-primary text-right font-medium">Andhra Pradesh, India</span>
+</div>
+<div class="py-4 flex justify-between items-baseline gap-4 reveal-child" style="transition-delay: 120ms;">
+<span class="text-ink-muted uppercase">Experience</span>
+<span class="text-ink-primary text-right font-medium">1 year (Professional)</span>
+</div>
+<div class="py-4 flex justify-between items-baseline gap-4 reveal-child" style="transition-delay: 180ms;">
+<span class="text-ink-muted uppercase">Degree</span>
+<span class="text-ink-primary text-right font-medium">MCA (Master of Computer Applications)</span>
+</div>
+<div class="py-4 flex justify-between items-baseline gap-4 reveal-child" style="transition-delay: 240ms;">
+<span class="text-ink-muted uppercase">Availability</span>
+<span class="text-ink-primary text-right font-medium">Open to on-site, hybrid, &amp; remote</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 02 / EXPERIENCE SECTION (Changelog-style Timeline with Scroll Hairline Fill) -->
+<section class="py-16 sm:py-24 hairline-b reveal-on-scroll relative" id="experience">
+<div class="flex items-baseline justify-between mb-12">
+<div>
+<span class="font-mono text-xs uppercase tracking-wider text-accent-light">02 / EXPERIENCE</span>
+<h2 class="font-serif text-3xl sm:text-4xl text-ink-primary font-light mt-1">
+            Work history &amp; training
+          </h2>
+</div>
+<span class="font-mono text-xs text-ink-muted">2024 — 2026</span>
+</div>
+<div class="relative divide-y divide-hairline-light" id="experience-timeline">
+<!-- Dynamic vertical hairline drawing down on scroll -->
+<div aria-hidden="true" class="hidden md:block absolute top-0 bottom-0 left-[31.5%] w-px bg-hairline-light pointer-events-none">
+<div class="w-full bg-[#E4472B] origin-top transition-transform duration-100 ease-out" id="timeline-indicator" style="height: 100%; transform: scaleY(0);"></div>
+</div>
+<!-- Role 1 -->
+<article class="py-10 grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 reveal-child" style="transition-delay: 60ms;">
+<div class="md:col-span-4 font-mono text-xs space-y-1">
+<time class="text-accent-light font-medium block">OCT 2025 — OCT 2026</time>
+<span class="text-ink-muted block">Full-time · Remote</span>
+</div>
+<div class="md:col-span-8 space-y-4">
+<div>
+<h3 class="text-xl font-serif text-ink-primary">
+                Associate Software Developer
+              </h3>
+<p class="font-mono text-xs text-ink-muted mt-0.5">
+                LeadSource Tech
+              </p>
+</div>
+<ul class="space-y-2 text-sm text-ink-muted list-disc list-outside ml-4 font-normal">
+<li>Integrated Google Gemini and other LLM services, including AI message generation, token calculation, and tool calling.</li>
+<li>Built frontends with React.js, Next.js, and Shadcn UI.</li>
+<li>Developed Chrome extensions using Manifest V3.</li>
+<li>Built backend services on Cloudflare Workers, Firebase Authentication, and Realtime Database.</li>
+<li>Implemented real-time features with WebSockets.</li>
+<li>Integrated the Razorpay payment gateway.</li>
+<li>Handled deployment, optimization, and scaling.</li>
+<li>Tested and documented APIs with Postman and Swagger UI.</li>
+</ul>
+</div>
+</article>
+<!-- Role 2 -->
+<article class="py-10 grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 reveal-child" style="transition-delay: 120ms;">
+<div class="md:col-span-4 font-mono text-xs space-y-1">
+<time class="text-accent-light font-medium block">APR 2024 — JUN 2024</time>
+<span class="text-ink-muted block">Virtual Internship · Remote</span>
+</div>
+<div class="md:col-span-8 space-y-4">
+<div>
+<h3 class="text-xl font-serif text-ink-primary">
+                Google AI/ML Virtual Intern
+              </h3>
+<p class="font-mono text-xs text-ink-muted mt-0.5">
+                Google for Developers / SmartInternz
+              </p>
+</div>
+<ul class="space-y-2 text-sm text-ink-muted list-disc list-outside ml-4 font-normal">
+<li>Completed TensorFlow learning pathways covering deep learning foundations and model training.</li>
+<li>Built and evaluated models for neural networks, object detection, image classification, and product image search.</li>
+</ul>
+</div>
+</article>
+</div>
+</section>
+<!-- 03 / SKILLS SECTION -->
+<section class="py-16 sm:py-24 hairline-b reveal-on-scroll" id="skills">
+<div class="mb-12">
+<span class="font-mono text-xs uppercase tracking-wider text-accent-light">03 / SKILLS</span>
+<h2 class="font-serif text-3xl sm:text-4xl text-ink-primary font-light mt-1">
+          Technical competence
+        </h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10">
+<!-- 1. Frontend -->
+<div class="space-y-3 reveal-child" style="transition-delay: 60ms;">
+<h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-ink-primary border-b border-hairline-light pb-2">
+            Frontend
+          </h3>
+<div class="flex flex-wrap gap-1.5 font-mono text-xs text-ink-muted">
+<span class="px-2 py-0.5 border border-hairline-light rounded">React.js</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">Next.js</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">JavaScript</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">HTML5</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">CSS3</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">Tailwind CSS</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">Shadcn UI</span>
+</div>
+</div>
+<!-- 2. Backend -->
+<div class="space-y-3 reveal-child" style="transition-delay: 120ms;">
+<h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-ink-primary border-b border-hairline-light pb-2">
+            Backend
+          </h3>
+<div class="flex flex-wrap gap-1.5 font-mono text-xs text-ink-muted">
+<span class="px-2 py-0.5 border border-hairline-light rounded">Node.js</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">Express.js</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">REST APIs</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">WebSockets</span>
+</div>
+</div>
+<!-- 3. AI & Automation -->
+<div class="space-y-3 reveal-child" style="transition-delay: 180ms;">
+<h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-ink-primary border-b border-hairline-light pb-2">
+            AI &amp; Automation
+          </h3>
+<div class="flex flex-wrap gap-1.5 font-mono text-xs text-ink-muted">
+<span class="px-2 py-0.5 border border-hairline-light rounded">Google Gemini</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">LLM Integration</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">Tool Calling</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">Chrome MV3</span>
+</div>
+</div>
+<!-- 4. Cloud & Services -->
+<div class="space-y-3 reveal-child" style="transition-delay: 240ms;">
+<h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-ink-primary border-b border-hairline-light pb-2">
+            Cloud &amp; Services
+          </h3>
+<div class="flex flex-wrap gap-1.5 font-mono text-xs text-ink-muted">
+<span class="px-2 py-0.5 border border-hairline-light rounded">Cloudflare Workers</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">AWS</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">Firebase</span>
+</div>
+</div>
+<!-- 5. Databases -->
+<div class="space-y-3 reveal-child" style="transition-delay: 300ms;">
+<h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-ink-primary border-b border-hairline-light pb-2">
+            Databases
+          </h3>
+<div class="flex flex-wrap gap-1.5 font-mono text-xs text-ink-muted">
+<span class="px-2 py-0.5 border border-hairline-light rounded">MongoDB</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">Firebase RTDB</span>
+</div>
+</div>
+<!-- 6. Tools & OS -->
+<div class="space-y-3 reveal-child" style="transition-delay: 360ms;">
+<h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-ink-primary border-b border-hairline-light pb-2">
+            Tools &amp; OS
+          </h3>
+<div class="flex flex-wrap gap-1.5 font-mono text-xs text-ink-muted">
+<span class="px-2 py-0.5 border border-hairline-light rounded">Postman</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">Swagger UI</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">Git</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">GitHub</span>
+<span class="px-2 py-0.5 border border-hairline-light rounded">Linux (Ubuntu)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 04 / PROJECTS SECTION (Typography with interactive row movement & numeral color transition) -->
+<section class="py-16 sm:py-24 hairline-b reveal-on-scroll" id="projects">
+<div class="flex items-baseline justify-between mb-12">
+<div>
+<span class="font-mono text-xs uppercase tracking-wider text-accent-light">04 / SELECTED PROJECTS</span>
+<h2 class="font-serif text-3xl sm:text-4xl text-ink-primary font-light mt-1">
+            Engineered systems &amp; products
+          </h2>
+</div>
+<span class="font-mono text-xs text-ink-muted">ARRAY DATA-DRIVEN</span>
+</div>
+<!-- Rendered purely via data array below: Split editorial text layout -->
+<div class="divide-y divide-hairline-light" id="projects-container">
+<!-- Injected via JavaScript with project-row animations -->
+</div>
+</section>
+<!-- 05 / EDUCATION SECTION -->
+<section class="py-16 sm:py-24 hairline-b reveal-on-scroll" id="education">
+<div class="mb-12">
+<span class="font-mono text-xs uppercase tracking-wider text-accent-light">05 / EDUCATION</span>
+<h2 class="font-serif text-3xl sm:text-4xl text-ink-primary font-light mt-1">
+          Academic foundation
+        </h2>
+</div>
+<div class="divide-y divide-hairline-light font-mono text-xs">
+<div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline reveal-child" style="transition-delay: 60ms;">
+<span class="md:col-span-3 text-accent-light font-medium">2023 — 2025</span>
+<div class="md:col-span-6">
+<h3 class="text-base font-serif font-light text-ink-primary">
+              Master of Computer Applications (MCA)
+            </h3>
+<p class="text-ink-muted mt-1">
+              Narasaraopeta Engineering College
+            </p>
+</div>
+<span class="md:col-span-3 md:text-right text-ink-muted">
+            [GPA: add real value]
+          </span>
+</div>
+<div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline reveal-child" style="transition-delay: 120ms;">
+<span class="md:col-span-3 text-accent-light font-medium">Graduated</span>
+<div class="md:col-span-6">
+<h3 class="text-base font-serif font-light text-ink-primary">
+              Bachelor of Science (B.Sc.)
+            </h3>
+<p class="text-ink-muted mt-1">
+              Mahatma Gandhi College, Guntur
+            </p>
+</div>
+<span class="md:col-span-3 md:text-right text-ink-muted">
+            [GPA: add real value]
+          </span>
+</div>
+</div>
+</section>
+<!-- CERTIFICATIONS SECTION -->
+<section class="py-16 sm:py-24 hairline-b reveal-on-scroll" id="certifications">
+<div class="mb-8 flex items-baseline justify-between">
+<div>
+<span class="font-mono text-xs uppercase tracking-wider text-accent-light">RECOGNITION</span>
+<h2 class="font-serif text-2xl sm:text-3xl text-ink-primary font-light mt-1">
+            Certifications &amp; credentials
+          </h2>
+</div>
+<span class="font-mono text-xs text-ink-muted">VERIFIED</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-hairline-light border border-hairline-light" id="certifications-container">
+<!-- Hydrated by JS -->
+</div>
+</section>
+<!-- 06 / CONTACT SECTION -->
+<section class="my-16 sm:my-24 rounded-none sm:rounded-sm bg-[#14171F] text-[#ECEAE4] p-8 sm:p-12 lg:p-16 border border-[#262A35] reveal-on-scroll" id="contact">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+<div class="lg:col-span-5 space-y-6">
+<div>
+<span class="font-mono text-xs text-[#FF6A45] tracking-wider uppercase">06 / CONTACT</span>
+<h2 class="font-serif text-3xl sm:text-5xl font-light mt-2 text-[#ECEAE4] leading-tight">
+              Let's build something together.
+            </h2>
+</div>
+<p class="text-sm text-[#8E95A5] leading-relaxed max-w-[50ch]">
+            Looking for a developer, or want to talk about a role? Send me a message.
+          </p>
+<div class="pt-4 space-y-3 font-mono text-xs">
+<div class="flex items-center gap-2">
+<span class="text-[#8E95A5]">Email:</span>
+<a class="text-[#FF6A45] editorial-link font-medium" href="mailto:mselfkrishna@gmail.com">mselfkrishna@gmail.com</a>
+<button class="ml-2 px-2 py-0.5 border border-[#262A35] rounded text-[11px] text-[#ECEAE4] hover:bg-white/10 transition-colors inline-flex items-center gap-1 hover-shift" id="copy-email-btn" title="Copy to clipboard" type="button">
+<span>Copy</span>
+<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="14" rx="2" ry="2" width="14" x="8" y="8"></rect>
+<path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+</svg>
+</button>
+</div>
+<div class="flex items-center gap-6 text-[#8E95A5] pt-2">
+<a class="hover:text-white editorial-link inline-flex items-center gap-1" href="https://linkedin.com/in/" rel="noopener noreferrer" target="_blank">
+                LinkedIn <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"></path></svg>
+</a>
+<a class="hover:text-white editorial-link inline-flex items-center gap-1" href="https://github.com/" rel="noopener noreferrer" target="_blank">
+                GitHub <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"></path></svg>
+</a>
+</div>
+</div>
+</div>
+<!-- Contact Form -->
+<div class="lg:col-span-7 bg-[#171A21] p-6 sm:p-8 border border-[#262A35]">
+<form class="space-y-4" id="contact-form">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block font-mono text-xs text-[#8E95A5] mb-1" for="name">Your Name</label>
+<input class="w-full px-3 py-2 bg-[#14171F] border border-[#262A35] rounded-none text-sm text-[#ECEAE4] focus:outline-none focus:border-[#FF6A45] transition-colors" id="name" name="name" placeholder="Alex Morgan" required="" type="text"/>
+</div>
+<div>
+<label class="block font-mono text-xs text-[#8E95A5] mb-1" for="email">Email Address</label>
+<input class="w-full px-3 py-2 bg-[#14171F] border border-[#262A35] rounded-none text-sm text-[#ECEAE4] focus:outline-none focus:border-[#FF6A45] transition-colors" id="email" name="email" placeholder="alex@company.com" required="" type="email"/>
+</div>
+</div>
+<div>
+<label class="block font-mono text-xs text-[#8E95A5] mb-1" for="subject">Subject</label>
+<input class="w-full px-3 py-2 bg-[#14171F] border border-[#262A35] rounded-none text-sm text-[#ECEAE4] focus:outline-none focus:border-[#FF6A45] transition-colors" id="subject" name="subject" placeholder="Full-Stack Developer Opportunity" required="" type="text"/>
+</div>
+<div>
+<label class="block font-mono text-xs text-[#8E95A5] mb-1" for="message">Message</label>
+<textarea class="w-full px-3 py-2 bg-[#14171F] border border-[#262A35] rounded-none text-sm text-[#ECEAE4] focus:outline-none focus:border-[#FF6A45] transition-colors" id="message" name="message" placeholder="Tell me about the role, team, or project requirements..." required="" rows="4"></textarea>
+</div>
+<div class="p-3 bg-[#14171F] border border-dashed border-[#262A35] font-mono text-[11px] text-[#8E95A5]">
+              BACKEND NOTICE: Connect Formspree ID or Next.js /api/contact route for delivery.
+            </div>
+<div class="hidden text-xs font-mono py-1" id="form-feedback"></div>
+<button class="w-full sm:w-auto px-6 py-2.5 bg-[#FF6A45] text-black font-mono text-xs font-semibold rounded-none hover:opacity-90 transition-opacity hover-shift" type="submit">
+              Send Message
+            </button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- FOOTER -->
+<footer class="hairline-t bg-[#F6F4EF] py-8 text-xs font-mono text-ink-muted">
+<div class="max-w-[1280px] mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-ink-primary">MK</span>
+<span>·</span>
+<span>Mundru Krishnaprasad</span>
+</div>
+<nav aria-label="Footer Navigation" class="flex items-center gap-6">
+<a class="editorial-link hover:text-accent-light" href="#about">About</a>
+<a class="editorial-link hover:text-accent-light" href="#projects">Projects</a>
+<a class="editorial-link hover:text-accent-light" href="#contact">Contact</a>
+<a class="editorial-link hover:text-accent-light" href="https://github.com/" rel="noopener noreferrer" target="_blank">GitHub</a>
+</nav>
+<div>
+        © <span id="year"></span> Mundru Krishnaprasad.
+      </div>
+</div>
+</footer>
+<!-- FLOATING COMMAND HINT (Bottom-Right) -->
+<div class="fixed bottom-4 right-4 z-30 hidden sm:block">
+<button class="px-3 py-1.5 bg-[#F6F4EF]/90 backdrop-blur border border-hairline-light rounded shadow-sm text-xs font-mono text-ink-muted hover:text-ink-primary flex items-center gap-2 hover-shift" id="floating-palette-trigger" type="button">
+<span>Jump to section</span>
+<kbd class="px-1 py-0.5 bg-black/5 rounded text-[10px] text-accent-light">/</kbd>
+</button>
+</div>
+<!-- COMMAND PALETTE MODAL ("Press / to jump") -->
+<dialog class="w-full max-w-lg p-0 bg-transparent text-ink-primary m-auto focus:outline-none" id="command-palette">
+<div class="bg-[#F6F4EF] border border-hairline-light shadow-2xl p-4 space-y-3 font-mono text-xs">
+<div class="flex items-center justify-between border-b border-hairline-light pb-2">
+<span class="uppercase tracking-wider text-accent-light font-medium">Quick Jump Command Palette</span>
+<button aria-label="Close palette" class="p-1 text-ink-muted hover:text-ink-primary" id="close-palette" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<line x1="18" x2="6" y1="6" y2="18"></line>
+<line x1="6" x2="18" y1="6" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="space-y-1 pt-1">
+<a class="palette-item flex items-center justify-between px-3 py-2 rounded hover:bg-black/5 transition-colors" href="#hero">
+<span>Hero Statement</span>
+<kbd class="text-[10px] text-ink-muted">Top</kbd>
+</a>
+<a class="palette-item flex items-center justify-between px-3 py-2 rounded hover:bg-black/5 transition-colors" href="#about">
+<span>About</span>
+<kbd class="text-[10px] text-ink-muted">1</kbd>
+</a>
+<a class="palette-item flex items-center justify-between px-3 py-2 rounded hover:bg-black/5 transition-colors" href="#experience">
+<span>Experience</span>
+<kbd class="text-[10px] text-ink-muted">2</kbd>
+</a>
+<a class="palette-item flex items-center justify-between px-3 py-2 rounded hover:bg-black/5 transition-colors" href="#skills">
+<span>Skills</span>
+<kbd class="text-[10px] text-ink-muted">3</kbd>
+</a>
+<a class="palette-item flex items-center justify-between px-3 py-2 rounded hover:bg-black/5 transition-colors" href="#projects">
+<span>Projects</span>
+<kbd class="text-[10px] text-ink-muted">4</kbd>
+</a>
+<a class="palette-item flex items-center justify-between px-3 py-2 rounded hover:bg-black/5 transition-colors" href="#education">
+<span>Education &amp; Certifications</span>
+<kbd class="text-[10px] text-ink-muted">5</kbd>
+</a>
+<a class="palette-item flex items-center justify-between px-3 py-2 rounded hover:bg-black/5 transition-colors" href="#contact">
+<span>Contact</span>
+<kbd class="text-[10px] text-accent-light">6</kbd>
+</a>
+</div>
+<div class="border-t border-hairline-light pt-2 flex justify-between text-[11px] text-ink-muted">
+<span>Press <kbd class="px-1 bg-black/5 rounded">ESC</kbd> to exit</span>
+<span>Keyboard ready</span>
+</div>
+</div>
+</dialog>
+<!-- SCRIPTS: Time-based greeting, Dynamic Header Border, Sliding Nav Underline, Scroll Timeline & Motions -->
+<script>
+    // Trigger page-load masked slide up animations
+    window.addEventListener('DOMContentLoaded', () => {
+      requestAnimationFrame(() => {
+        document.documentElement.classList.add('page-loaded');
+      });
+      initDynamicGreeting();
+    });
+
+    // 1. TIME-BASED HERO GREETING (Strict Hour Rules & Blur-free 300ms crossfade)
+    function calculateGreeting() {
+      const hour = new Date().getHours();
+      if (hour >= 5 && hour < 12) {
+        return "Good morning";
+      } else if (hour >= 12 && hour < 17) {
+        return "Good afternoon";
+      } else if (hour >= 17 && hour < 21) {
+        return "Good evening";
+      } else {
+        return "Hello"; // 21:00-04:59 (no "good night")
+      }
+    }
+
+    function initDynamicGreeting() {
+      const greetingEl = document.getElementById('dynamic-greeting');
+      if (!greetingEl) return;
+
+      const targetGreeting = calculateGreeting();
+
+      // If initial text matches, no swap needed
+      if (greetingEl.textContent.trim() === targetGreeting) {
+        return;
+      }
+
+      // Smooth client-side blur-free crossfade transition (300ms)
+      setTimeout(() => {
+        greetingEl.style.opacity = '0';
+        setTimeout(() => {
+          greetingEl.textContent = targetGreeting;
+          greetingEl.style.opacity = '1';
+        }, 150);
+      }, 350);
+
+      // Re-check every minute
+      setInterval(() => {
+        const nextGreeting = calculateGreeting();
+        if (greetingEl.textContent.trim() !== nextGreeting) {
+          greetingEl.style.opacity = '0';
+          setTimeout(() => {
+            greetingEl.textContent = nextGreeting;
+            greetingEl.style.opacity = '1';
+          }, 150);
+        }
+      }, 60000);
+    }
+
+    // 2. HEADER SCROLL BORDER & SLIDING NAV UNDERLINE
+    const header = document.getElementById('site-header');
+    const navIndicator = document.getElementById('nav-indicator');
+    const navLinks = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('section[id]');
+
+    function updateHeaderBorder() {
+      if (window.scrollY > 8) {
+        header.classList.add('hairline-b');
+      } else {
+        header.classList.remove('hairline-b');
+      }
+    }
+
+    function moveNavIndicator(targetLink) {
+      if (!targetLink || !navIndicator) return;
+      const rect = targetLink.getBoundingClientRect();
+      const parentRect = targetLink.parentElement.getBoundingClientRect();
+      navIndicator.style.left = `${rect.left - parentRect.left}px`;
+      navIndicator.style.width = `${rect.width}px`;
+      navIndicator.style.opacity = '1';
+    }
+
+    // Nav active section detection via scroll
+    function updateActiveNav() {
+      let currentSectionId = '';
+      const scrollPos = window.scrollY + 180;
+
+      sections.forEach(sec => {
+        const top = sec.offsetTop;
+        const height = sec.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          currentSectionId = sec.getAttribute('id');
+        }
+      });
+
+      let activeItem = null;
+      navLinks.forEach(link => {
+        if (link.getAttribute('data-section') === currentSectionId) {
+          link.classList.add('text-accent-light', 'font-medium');
+          link.classList.remove('text-ink-muted');
+          activeItem = link;
+        } else {
+          link.classList.remove('text-accent-light', 'font-medium');
+          link.classList.add('text-ink-muted');
+        }
+      });
+
+      if (activeItem) {
+        moveNavIndicator(activeItem);
+      } else if (window.scrollY < 200) {
+        if (navIndicator) navIndicator.style.opacity = '0';
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      updateHeaderBorder();
+      updateActiveNav();
+      updateExperienceTimeline();
+    }, { passive: true });
+
+    navLinks.forEach(link => {
+      link.addEventListener('mouseenter', () => moveNavIndicator(link));
+      link.addEventListener('click', () => moveNavIndicator(link));
+    });
+
+    document.getElementById('desktop-nav')?.addEventListener('mouseleave', () => {
+      updateActiveNav();
+    });
+
+    // 3. EXPERIENCE TIMELINE VERTICAL HAIRLINE DRAW
+    const expSection = document.getElementById('experience');
+    const timelineIndicator = document.getElementById('timeline-indicator');
+
+    function updateExperienceTimeline() {
+      if (!expSection || !timelineIndicator) return;
+      const rect = expSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Start drawing when top of section enters halfway, end near bottom
+      const totalDist = rect.height;
+      const currentScroll = windowHeight * 0.7 - rect.top;
+
+      let progress = currentScroll / totalDist;
+      progress = Math.max(0, Math.min(1, progress));
+      timelineIndicator.style.transform = `scaleY(${progress})`;
+    }
+
+    // 4. SCROLL REVEAL (IntersectionObserver for sections & staggered items)
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('is-revealed'));
+    }
+
+    // 5. Projects Array with Hover Interaction (Numeral to vermilion + Row slides 6px right)
+    const projects = [
+      {
+        number: "01",
+        name: "AI Messaging Automation",
+        problem: "Manual messaging workflows in customer outreach are repetitive and slow to personalize.",
+        role: "Built full-stack workflow, prompt tool calling, and background Chrome MV3 extension.",
+        stack: ["Next.js", "Gemini", "Chrome MV3", "Firebase RTDB"],
+        result: "Automated dynamic message drafts with real-time token tracking and browser injection.",
+        live: "",
+        github: "",
+        isPrivate: true
+      },
+      {
+        number: "02",
+        name: "Cloudflare Edge API & Razorpay Gateway",
+        problem: "Low-latency regional checkout verification and subscription sync without heavy server overhead.",
+        role: "Designed Cloudflare Workers microservices and Razorpay webhook validation pipelines.",
+        stack: ["Cloudflare Workers", "WebSockets", "Razorpay API", "Node.js"],
+        result: "Executed sub-50ms edge request authentication with instant payment confirmation.",
+        live: "",
+        github: "https://github.com/",
+        isPrivate: false
+      },
+      {
+        number: "03",
+        name: "Enterprise Manifest V3 Extension Suite",
+        problem: "Legacy Chrome extensions needed migration to MV3 with reliable service worker lifecycles.",
+        role: "Re-architected background listeners, storage handlers, and DOM content script bridges.",
+        stack: ["Chrome MV3", "JavaScript", "REST APIs", "Tailwind CSS"],
+        result: "Ensured 100% compliance with Chrome Web Store MV3 sandbox and storage security guidelines.",
+        live: "",
+        github: "",
+        isPrivate: true
+      },
+      {
+        number: "04",
+        name: "Realtime WebSocket Collaborative Board",
+        problem: "Teams required synchronized state sharing across distributed clients with zero data race.",
+        role: "Implemented WebSocket server broadcasting, state reconciliation, and React frontend.",
+        stack: ["React.js", "Shadcn UI", "WebSockets", "Express.js"],
+        result: "Synchronized concurrent state across active client sessions with automatic reconnects.",
+        live: "",
+        github: "https://github.com/",
+        isPrivate: false
+      }
+    ];
+
+    const projectsContainer = document.getElementById('projects-container');
+    projectsContainer.innerHTML = projects.map(p => {
+      const liveBtn = p.live 
+        ? `<a href="${p.live}" target="_blank" rel="noopener noreferrer" class="editorial-link text-ink-primary hover:text-accent-light font-medium inline-flex items-center gap-1">Live <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>`
+        : '';
+
+      const codeBtn = p.github 
+        ? `<a href="${p.github}" target="_blank" rel="noopener noreferrer" class="editorial-link text-ink-muted hover:text-accent-light inline-flex items-center gap-1">Code <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>`
+        : '';
+
+      const privateBadge = p.isPrivate 
+        ? `<span class="text-ink-muted border border-hairline-light px-2 py-0.5 rounded text-[11px]">Private repo</span>`
+        : '';
+
+      return `
+        <article class="project-row py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start cursor-default">
+          <!-- Col A: Giant Typographic Numeral -->
+          <div class="lg:col-span-3 flex lg:flex-col justify-between items-baseline lg:items-start select-none">
+            <span class="project-numeral font-display text-7xl sm:text-8xl lg:text-9xl font-normal text-ink-primary/20 leading-none">
+              ${p.number}
+            </span>
+            <div class="font-mono text-[11px] text-accent-light tracking-wider uppercase mt-2">
+              System // 0${p.number.replace('0','')}
+            </div>
           </div>
+
+          <!-- Col B: Project Identity & Narrative Breakdown with 6px right slide on hover -->
+          <div class="project-content lg:col-span-9 space-y-6">
+            <div class="border-b border-hairline-light pb-4">
+              <h3 class="font-serif text-2xl sm:text-3xl lg:text-4xl text-ink-primary font-light">
+                ${p.name}
+              </h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+              <div class="space-y-1">
+                <span class="font-mono text-xs uppercase text-ink-muted block">Problem</span>
+                <p class="text-ink-primary leading-relaxed">${p.problem}</p>
+              </div>
+
+              <div class="space-y-1">
+                <span class="font-mono text-xs uppercase text-ink-muted block">My Role</span>
+                <p class="text-ink-muted leading-relaxed">${p.role}</p>
+              </div>
+
+              <div class="space-y-1">
+                <span class="font-mono text-xs uppercase text-ink-muted block">Result</span>
+                <p class="text-ink-muted leading-relaxed">${p.result}</p>
+              </div>
+            </div>
+
+            <!-- Footer of project row: Stack tags + links -->
+            <div class="pt-2 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5">
+                ${p.stack.map(tag => `<span class="px-2 py-0.5 border border-hairline-light rounded text-ink-muted">${tag}</span>`).join('')}
+              </div>
+
+              <div class="flex items-center gap-4">
+                ${liveBtn}
+                ${codeBtn}
+                ${privateBadge}
+              </div>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join('');
+
+    // 6. Certifications Array
+    const certifications = [
+      { name: "Google AI/ML Virtual Internship", link: "" },
+      { name: "Infosys Springboard NLP", link: "" },
+      { name: "NPTEL Internet of Things", link: "" },
+      { name: "MongoDB Atlas Developer", link: "" },
+      { name: "HackerRank Problem Solving", link: "" },
+      { name: "TensorFlow Learning Pathways", link: "" }
+    ];
+
+    const certsContainer = document.getElementById('certifications-container');
+    certsContainer.innerHTML = certifications.map((c, i) => {
+      const verifyTag = c.link
+        ? `<a href="${c.link}" target="_blank" rel="noopener noreferrer" class="text-accent-light font-mono text-xs editorial-link inline-flex items-center gap-1">Verify <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>`
+        : `<span class="font-mono text-[11px] text-ink-muted">Credential on file</span>`;
+
+      return `
+        <div class="p-5 bg-paper-light flex flex-col justify-between h-28 reveal-child" style="transition-delay: ${i * 60}ms;">
+          <span class="font-mono text-xs text-ink-primary font-medium">${c.name}</span>
+          <div>${verifyTag}</div>
         </div>
-        <a href="https://github.com/mundrukrishnaprasad/mundrukrishnaprasad.github.io" target="_blank" rel="noopener" class="btn">⭐ View repo</a>
-      </div>
-    </div>
-  </section>
+      `;
+    }).join('');
 
-  <!-- ========== UPDATES ========== -->
-  <section class="section" id="updates">
-    <div class="container">
-      <p class="kicker reveal">05 — updates</p>
-      <h2 class="section-title reveal">What I've been <span class="grad">up to</span></h2>
-      <ul class="up-list">
-        <!-- ✏️ EDIT: your updates/tweets/blogs -->
-        <li class="reveal">
-          <span class="up-tag">site</span>
-          <p>Rebuilt my portfolio with an interactive 3D project ring — live now ✅</p>
-        </li>
-        <li class="reveal">
-          <span class="up-tag">repo</span>
-          <p>Docker First Project in active development — images, compose, CI/CD.</p>
-        </li>
-        <li class="reveal">
-          <span class="up-tag">learning</span>
-          <p>Google Virtual AI/ML internship — hands-on training building image models 🧠</p>
-        </li>
-      </ul>
-    </div>
-  </section>
+    // 7. Live India Time (Asia/Kolkata)
+    function updateLiveClock() {
+      const clockEl = document.getElementById('live-clock');
+      try {
+        const formatter = new Intl.DateTimeFormat('en-IN', {
+          timeZone: 'Asia/Kolkata',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        });
+        clockEl.textContent = formatter.format(new Date()) + " IST";
+      } catch (err) {
+        clockEl.textContent = new Date().toLocaleTimeString() + " IST";
+      }
+    }
+    updateLiveClock();
+    setInterval(updateLiveClock, 1000);
 
-  <!-- ========== CONTACT ========== -->
-  <section class="section section-alt" id="contact">
-    <div class="container center">
-      <p class="kicker reveal">06 — contact</p>
-      <h2 class="section-title reveal">Let's <span class="grad">chat</span> 👋</h2>
-      <p class="contact-lead reveal">
-        My inbox is always open — job opportunities, project ideas, or just a hello!
-      </p>
-      <div class="contact-links reveal">
-        <!-- ✏️ EDIT: add your real LinkedIn / resume links -->
-        <a href="mailto:kp489292@gmail.com" class="btn">✉️ kp489292@gmail.com</a>
-        <a href="https://github.com/mundrukrishnaprasad" target="_blank" rel="noopener" class="btn btn-outline">⌥ GitHub</a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="btn btn-outline">in / LinkedIn</a>
-      </div>
-    </div>
-  </section>
+    // 8. Mobile Drawer Controls with 50ms Stagger Links
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
 
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer">
-    <div class="container center">
-      <p>Designed &amp; built by Krishna Prasad</p>
-      <p class="muted">© <span id="year"></span> · Hosted on GitHub Pages · Inspired by the creative web 🔥</p>
-    </div>
-  </footer>
+    function openMobileMenu() {
+      mobileMenu.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        mobileMenu.style.opacity = '1';
+        mobileMenu.classList.add('mobile-drawer-open');
+      });
+      mobileBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
 
-  <script src="script.js"></script>
-</body>
-</html>
+    function closeMobileMenu() {
+      mobileMenu.style.opacity = '0';
+      mobileMenu.classList.remove('mobile-drawer-open');
+      setTimeout(() => {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+      }, 250);
+      mobileBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    mobileBtn?.addEventListener('click', openMobileMenu);
+    mobileMenuClose?.addEventListener('click', closeMobileMenu);
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // 9. Copy Email to Clipboard
+    const copyBtn = document.getElementById('copy-email-btn');
+    copyBtn?.addEventListener('click', () => {
+      navigator.clipboard.writeText('mselfkrishna@gmail.com').then(() => {
+        const originalHTML = copyBtn.innerHTML;
+        copyBtn.innerHTML = `<span>Copied!</span> <svg class="w-3 h-3 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        setTimeout(() => {
+          copyBtn.innerHTML = originalHTML;
+        }, 2200);
+      });
+    });
+
+    // 10. Contact Form Handling
+    const form = document.getElementById('contact-form');
+    const feedback = document.getElementById('form-feedback');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const subject = form.subject.value.trim();
+      const message = form.message.value.trim();
+
+      if (!name || !email || !subject || !message) {
+        feedback.className = "text-xs font-mono py-1 text-rose-400 block";
+        feedback.textContent = "Please complete all fields.";
+        return;
+      }
+
+      feedback.className = "text-xs font-mono py-1 text-emerald-400 block";
+      feedback.textContent = "Form validated. Ready for submission. Hook endpoint to Formspree or your API route.";
+    });
+
+    // 11. Command Palette Dialog ("/" shortcut)
+    const palette = document.getElementById('command-palette');
+    const paletteTriggers = [
+      document.getElementById('palette-trigger'),
+      document.getElementById('floating-palette-trigger')
+    ];
+    const closePaletteBtn = document.getElementById('close-palette');
+
+    function openPalette() {
+      if (typeof palette.showModal === 'function') {
+        palette.showModal();
+      }
+    }
+
+    function closePalette() {
+      if (typeof palette.close === 'function') {
+        palette.close();
+      }
+    }
+
+    paletteTriggers.forEach(btn => btn?.addEventListener('click', openPalette));
+    closePaletteBtn?.addEventListener('click', closePalette);
+
+    window.addEventListener('keydown', (e) => {
+      const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+      if (activeTag === 'input' || activeTag === 'textarea') return;
+
+      if (e.key === '/') {
+        e.preventDefault();
+        openPalette();
+      }
+    });
+
+    palette?.addEventListener('click', (e) => {
+      const rect = palette.getBoundingClientRect();
+      const inDialog = (
+        rect.top <= e.clientY &&
+        e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX &&
+        e.clientX <= rect.left + rect.width
+      );
+      if (!inDialog) closePalette();
+    });
+
+    document.querySelectorAll('.palette-item').forEach(item => {
+      item.addEventListener('click', () => {
+        closePalette();
+      });
+    });
+
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body></html>
