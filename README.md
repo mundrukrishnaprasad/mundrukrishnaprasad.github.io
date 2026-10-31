@@ -7,7 +7,7 @@ Personal developer portfolio hosted on **GitHub Pages**.
 ## Tech
 - Plain HTML + CSS + JavaScript — no frameworks, no build step
 - Dark glassmorphism theme, fully responsive
-- Scroll-reveal animations, mobile nav
+- Preloader counter, draggable **3D project ring**, marquee ticker, scroll-reveal animations, mobile nav (marchantweb-inspired)
 
 ## Editing
 - All editable spots are marked in `index.html` with `<!-- ✏️ EDIT -->`

@@ -5,15 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- ✏️ EDIT: Update title and description below -->
   <title>Krishna Prasad · Full Stack Developer</title>
-  <meta name="description" content="Portfolio of Krishna Prasad — Full Stack Developer. Projects, skills and contact." />
+  <meta name="description" content="Portfolio of Krishna Prasad — Full Stack Developer. Interactive projects, skills and contact." />
   <meta property="og:title" content="Krishna Prasad · Full Stack Developer" />
-  <meta property="og:description" content="Full Stack Developer portfolio — projects, skills and contact." />
+  <meta property="og:description" content="Full Stack Developer portfolio — interactive projects, skills and contact." />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ========== NAVBAR ========== -->
+  <!-- ========== PRELOADER ========== -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <span class="loader-count" id="loaderCount">00</span>
+      <span class="loader-label">rendering…</span>
+    </div>
+  </div>
+
+  <!-- ========== NAV ========== -->
   <nav class="nav">
     <div class="nav-inner container">
       <a href="#home" class="logo">KP<span>.</span></a>
@@ -21,11 +29,11 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#home" class="active">Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#updates">Updates</a></li>
         <li><a href="#contact">Contact</a></li>
         <li>
-          <!-- ✏️ EDIT: your GitHub profile link -->
           <a href="https://github.com/mundrukrishnaprasad" target="_blank" rel="noopener" class="btn btn-sm btn-outline">GitHub ↗</a>
         </li>
       </ul>
@@ -34,121 +42,210 @@
 
   <!-- ========== HERO ========== -->
   <header class="hero" id="home">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
     <div class="container hero-inner">
-      <p class="hero-hi reveal">👋 Hi, I'm</p>
-      <h1 class="hero-name reveal">Krishna Prasad</h1>
-      <h2 class="hero-role reveal">Full Stack <span class="grad">Developer</span></h2>
-      <p class="hero-tag reveal">
-        <!-- ✏️ EDIT: your one-line pitch -->
-        I build and ship web applications — from clean frontends to containerized backends.
-        Currently exploring Cloud &amp; DevOps.
-      </p>
-      <div class="hero-cta reveal">
-        <a href="#projects" class="btn">View My Work</a>
-        <a href="#contact" class="btn btn-outline">Contact Me</a>
+      <div class="hero-badge reveal">✅ <span>Available for opportunities</span></div>
+
+      <h1 class="hero-title">
+        <span class="ht-line reveal">Full&nbsp;Stack</span>
+        <span class="ht-line ht-outline reveal">Interactive</span>
+        <span class="ht-line reveal">Developer<span class="ht-dot">.</span></span>
+      </h1>
+
+      <div class="hero-foot reveal">
+        <!-- ✏️ EDIT: one-line pitch about yourself -->
+        <p class="hero-tag">
+          I'm <strong>Krishna Prasad</strong> — building web apps end to end, from pixel-perfect
+          frontends to containerized backends. Currently exploring AI &amp; cloud-native tech.
+        </p>
+        <div class="avatar" aria-hidden="true">KP</div>
       </div>
-      <div class="hero-socials reveal">
-        <!-- ✏️ EDIT: add LinkedIn / resume links -->
-        <a href="https://github.com/mundrukrishnaprasad" target="_blank" rel="noopener" aria-label="GitHub">⌥ GitHub</a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">in / LinkedIn</a>
+
+      <div class="hero-cta reveal">
+        <a href="#projects" class="btn">Explore my work ↓</a>
+        <!-- ✏️ EDIT: replace mailto with your Calendly link when ready -->
+        <a href="mailto:kp489292@gmail.com?subject=Hello%20Krishna" class="btn btn-outline">Book a chat ↗</a>
+      </div>
+
+      <!-- ✏️ EDIT: your real numbers -->
+      <div class="hero-stats reveal">
+        <div><strong>2023</strong><span>started building</span></div>
+        <div><strong>6+</strong><span>projects shipped</span></div>
+        <div><strong>10+</strong><span>technologies</span></div>
       </div>
     </div>
   </header>
 
+  <!-- ========== TICKER ========== -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>HTML&nbsp;·&nbsp;CSS&nbsp;·&nbsp;JavaScript&nbsp;·&nbsp;React&nbsp;·&nbsp;Node.js&nbsp;·&nbsp;Python&nbsp;·&nbsp;Docker&nbsp;·&nbsp;Git&nbsp;·&nbsp;MySQL&nbsp;·&nbsp;MongoDB&nbsp;·&nbsp;REST&nbsp;APIs&nbsp;·&nbsp;CI/CD&nbsp;·&nbsp;</span>
+      <span>HTML&nbsp;·&nbsp;CSS&nbsp;·&nbsp;JavaScript&nbsp;·&nbsp;React&nbsp;·&nbsp;Node.js&nbsp;·&nbsp;Python&nbsp;·&nbsp;Docker&nbsp;·&nbsp;Git&nbsp;·&nbsp;MySQL&nbsp;·&nbsp;MongoDB&nbsp;·&nbsp;REST&nbsp;APIs&nbsp;·&nbsp;CI/CD&nbsp;·&nbsp;</span>
+    </div>
+  </div>
+
   <!-- ========== ABOUT ========== -->
   <section class="section" id="about">
     <div class="container">
-      <h3 class="section-title reveal">About <span class="grad">Me</span></h3>
+      <p class="kicker reveal">01 — about</p>
+      <h2 class="section-title reveal">Building since <span class="grad">day&nbsp;one</span> 🔥</h2>
       <div class="about-grid">
-        <div class="about-text reveal">
-          <!-- ✏️ EDIT: your real story — be specific, not generic -->
-          <p>
-            I'm a developer who enjoys turning ideas into working software. I work across the
-            stack — building responsive UIs, REST APIs, and deploying with Docker.
-          </p>
-          <p>
-            I'm currently leveling up in cloud-native technologies and open to full-time
-            roles and freelance work. When I'm not coding, I'm learning something new
-            or building side projects.
-          </p>
+        <!-- ✏️ EDIT: your real story -->
+        <p class="about-lead reveal">
+          I'm a developer who enjoys turning ideas into working software —
+          a long-term builder across the stack: clean UI, solid APIs, and shipping with Docker.
+          I keep things simple, measurable and deployed.
+        </p>
+        <!-- ✏️ EDIT: related experience pills -->
+        <div class="pill-wrap reveal">
+          <p class="pill-label">related experience</p>
+          <div class="pills">
+            <span>Fullstack Development</span>
+            <span>UX best practices</span>
+            <span>DevOps · Docker</span>
+            <span>Product Development</span>
+            <span>Cybersecurity basics</span>
+            <span>Project Management</span>
+          </div>
         </div>
-        <ul class="about-facts reveal">
-          <li><strong>🎓</strong> <span>Computer Science background</span></li>
-          <li><strong>💼</strong> <span>Open to work &amp; collaborations</span></li>
-          <li><strong>🌍</strong> <span>Based in India</span></li>
-          <li><strong>⚡</strong> <span>Fast learner, ship-fast mindset</span></li>
-        </ul>
       </div>
     </div>
   </section>
 
-  <!-- ========== SKILLS ========== -->
-  <section class="section section-alt" id="skills">
+  <!-- ========== STACK ========== -->
+  <section class="section section-alt" id="stack">
     <div class="container">
-      <h3 class="section-title reveal">Tech <span class="grad">Stack</span></h3>
-      <!-- ✏️ EDIT: swap/add pills with YOUR actual tech -->
-      <div class="skills-grid">
-        <div class="skill-card reveal"><span class="skill-icon">🌐</span><h4>Frontend</h4><p>HTML · CSS · JavaScript · React</p></div>
-        <div class="skill-card reveal"><span class="skill-icon">⚙️</span><h4>Backend</h4><p>Node.js · Python · REST APIs</p></div>
-        <div class="skill-card reveal"><span class="skill-icon">📦</span><h4>DevOps</h4><p>Docker · Git · CI/CD</p></div>
-        <div class="skill-card reveal"><span class="skill-icon">🗄️</span><h4>Databases</h4><p>MySQL · MongoDB</p></div>
+      <p class="kicker reveal">02 — stack</p>
+      <h2 class="section-title reveal">Core <span class="grad">tools</span></h2>
+      <div class="stack-grid">
+        <!-- ✏️ EDIT: your actual core stack -->
+        <div class="stack-card reveal"><h4>Frontend</h4><p>HTML · CSS · JavaScript · React</p></div>
+        <div class="stack-card reveal"><h4>Backend</h4><p>Node.js · Python · REST APIs</p></div>
+        <div class="stack-card reveal"><h4>DevOps</h4><p>Docker · Git · CI/CD</p></div>
+        <div class="stack-card reveal"><h4>Databases</h4><p>MySQL · MongoDB</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ========== PROJECTS ========== -->
-  <section class="section" id="projects">
+  <!-- ========== PROJECTS — 3D RING ========== -->
+  <section class="section ring-section" id="projects">
     <div class="container">
-      <h3 class="section-title reveal">Featured <span class="grad">Projects</span></h3>
-      <div class="projects-grid">
+      <p class="kicker reveal">03 — work</p>
+      <h2 class="section-title reveal">Drag <span class="grad">to explore</span></h2>
+      <p class="ring-hint reveal">◁ drag the ring · click a card to open ▷</p>
 
-        <!-- ✏️ EDIT: replace with real projects — add live demo link + repo link -->
-        <article class="project-card reveal">
-          <div class="project-top"><span class="folder">📁</span>
-            <div class="project-links">🔗 ⌥</div>
+      <div class="ring-stage reveal">
+        <div class="ring" id="ring">
+          <!-- ✏️ EDIT: replace with YOUR projects + data-href links -->
+          <div class="ring-card" data-href="https://github.com/mundrukrishnaprasad">
+            <span class="rc-num">01</span>
+            <h4>Docker First Project</h4>
+            <p>Containerized app setup — images, containers &amp; compose workflow.</p>
+            <div class="rc-tags"><span>Docker</span><span>CI/CD</span></div>
           </div>
-          <h4>Docker First Project</h4>
-          <p>Containerized application setup — learning the Docker workflow: images, containers and docker-compose orchestration.</p>
-          <div class="project-tags"><span>Docker</span><span>CI/CD</span></div>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-top"><span class="folder">📁</span>
-            <div class="project-links">🔗 ⌥</div>
+          <div class="ring-card" data-href="https://github.com/mundrukrishnaprasad">
+            <span class="rc-num">02</span>
+            <h4>Accenture Code 1</h4>
+            <p>Web development project built during the Accenture program.</p>
+            <div class="rc-tags"><span>HTML</span><span>JS</span></div>
           </div>
-          <h4>Accenture Code 1</h4>
-          <p>Web development project built during the Accenture program — problem-solving with clean, structured code.</p>
-          <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-top"><span class="folder">📁</span>
-            <div class="project-links">🔗 ⌥</div>
+          <div class="ring-card" data-href="https://mundrukrishnaprasad.github.io">
+            <span class="rc-num">03</span>
+            <h4>This Portfolio</h4>
+            <p>Interactive site you're looking at right now.</p>
+            <div class="rc-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
           </div>
-          <h4>More coming soon 🚀</h4>
-          <p>I ship continuously — check my GitHub for the latest builds and experiments.</p>
-          <div class="project-tags"><span>Full Stack</span><span>AI</span></div>
-        </article>
-
+          <div class="ring-card" data-href="https://github.com/mundrukrishnaprasad">
+            <span class="rc-num">04</span>
+            <h4>AI Notes Assistant</h4>
+            <p>Placeholder — RAG-powered notes app in progress. Swap with your project.</p>
+            <div class="rc-tags"><span>Python</span><span>AI</span></div>
+          </div>
+          <div class="ring-card" data-href="https://github.com/mundrukrishnaprasad">
+            <span class="rc-num">05</span>
+            <h4>E-Commerce UI</h4>
+            <p>Placeholder — storefront interface concept. Swap with your project.</p>
+            <div class="rc-tags"><span>React</span><span>UI</span></div>
+          </div>
+          <div class="ring-card" data-href="https://github.com/mundrukrishnaprasad">
+            <span class="rc-num">06</span>
+            <h4>Your Next Project</h4>
+            <p>Coming soon 🚀 — I ship continuously, check GitHub for the latest.</p>
+            <div class="rc-tags"><span>Full&nbsp;Stack</span></div>
+          </div>
+        </div>
+        <div class="ring-counter"><span id="ringIndex">00</span>/<span id="ringTotal">06</span></div>
       </div>
+
       <div class="center reveal">
-        <a href="https://github.com/mundrukrishnaprasad" target="_blank" rel="noopener" class="btn btn-outline">See all on GitHub ↗</a>
+        <a href="https://github.com/mundrukrishnaprasad" target="_blank" rel="noopener" class="btn btn-outline">See all repos on GitHub ↗</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ========== SPOTLIGHT ========== -->
+  <section class="section section-alt" id="spotlight">
+    <div class="container">
+      <p class="kicker reveal">04 — spotlight</p>
+      <h2 class="section-title reveal">Open source <span class="grad">spotlight</span></h2>
+      <div class="spotlight-card reveal">
+        <!-- ✏️ EDIT: feature your best public repo here -->
+        <div>
+          <h3>This Portfolio Website</h3>
+          <p>
+            Built with plain HTML, CSS and JavaScript — no frameworks, no build step.
+            Deployed free on GitHub Pages. Clone it, remix it, make it yours.
+          </p>
+          <div class="badges">
+            <span class="badge">▪ html</span>
+            <span class="badge">▪ css</span>
+            <span class="badge">▪ javascript</span>
+          </div>
+        </div>
+        <a href="https://github.com/mundrukrishnaprasad/mundrukrishnaprasad.github.io" target="_blank" rel="noopener" class="btn">⭐ View repo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== UPDATES ========== -->
+  <section class="section" id="updates">
+    <div class="container">
+      <p class="kicker reveal">05 — updates</p>
+      <h2 class="section-title reveal">What I've been <span class="grad">up to</span></h2>
+      <ul class="up-list">
+        <!-- ✏️ EDIT: your updates/tweets/blogs -->
+        <li class="reveal">
+          <span class="up-tag">site</span>
+          <p>Rebuilt my portfolio with an interactive 3D project ring — live now ✅</p>
+        </li>
+        <li class="reveal">
+          <span class="up-tag">repo</span>
+          <p>Docker First Project in active development — images, compose, CI/CD.</p>
+        </li>
+        <li class="reveal">
+          <span class="up-tag">learning</span>
+          <p>Deep-diving AI &amp; RAG — new project incoming 🚀</p>
+        </li>
+      </ul>
     </div>
   </section>
 
   <!-- ========== CONTACT ========== -->
   <section class="section section-alt" id="contact">
     <div class="container center">
-      <h3 class="section-title reveal">Get In <span class="grad">Touch</span></h3>
+      <p class="kicker reveal">06 — contact</p>
+      <h2 class="section-title reveal">Let's <span class="grad">chat</span> 👋</h2>
       <p class="contact-lead reveal">
-        My inbox is always open — whether you have a job opportunity, a project idea,
-        or just want to say hi!
+        My inbox is always open — job opportunities, project ideas, or just a hello!
       </p>
       <div class="contact-links reveal">
-        <!-- ✏️ EDIT: your real email (already set) & other links -->
+        <!-- ✏️ EDIT: add your real LinkedIn / resume links -->
         <a href="mailto:kp489292@gmail.com" class="btn">✉️ kp489292@gmail.com</a>
         <a href="https://github.com/mundrukrishnaprasad" target="_blank" rel="noopener" class="btn btn-outline">⌥ GitHub</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="btn btn-outline">in / LinkedIn</a>
       </div>
     </div>
   </section>
@@ -157,7 +254,7 @@
   <footer class="footer">
     <div class="container center">
       <p>Designed &amp; built by Krishna Prasad</p>
-      <p class="muted">© <span id="year"></span> · Hosted on GitHub Pages</p>
+      <p class="muted">© <span id="year"></span> · Hosted on GitHub Pages · Inspired by the creative web 🔥</p>
     </div>
   </footer>
 
