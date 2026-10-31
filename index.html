@@ -258,11 +258,11 @@
       .project-row:hover .project-content {
         transform: none !important;
       }
-      #timeline-indicator {
-        transform: scaleY(1) !important;
-      }
+      /* Timeline/Projects lines: keep scroll-driven drawing even with reduced motion —
+         only the ease animation is disabled so updates are instant */
+      #timeline-indicator,
       #projects-indicator {
-        transform: scaleY(1) !important;
+        transition: none !important;
       }
     }
   </style>
