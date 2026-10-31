@@ -920,9 +920,11 @@
       const rect = expSection.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // Start drawing when top of section enters halfway, end near bottom
+      // Start drawing when top of section enters view, finish as the section bottom
+      // reaches the viewport bottom — so the red hairline always TOUCHES the gray track
+      // by the time the user has finished reading (no leftover gap).
       const totalDist = rect.height;
-      const currentScroll = windowHeight * 0.7 - rect.top;
+      const currentScroll = windowHeight * 1.02 - rect.top;
 
       let progress = currentScroll / totalDist;
       progress = Math.max(0, Math.min(1, progress));
