@@ -1,18 +1,49 @@
-# 🌐 Portfolio Website — krishnaprasad
+# Portfolio — Mundru Krishnaprasad
 
-Personal developer portfolio hosted on **GitHub Pages**.
+Personal developer portfolio: a single-page site covering about, experience, skills, projects, education and contact.
 
-🔗 **Live:** https://mundrukrishnaprasad.github.io
+**Live:** <https://mundrukrishnaprasad.github.io>
 
-## Tech
-- Plain HTML + CSS + JavaScript — no frameworks, no build step
-- Dark glassmorphism theme, fully responsive
-- Preloader counter, draggable **3D project ring**, marquee ticker, scroll-reveal animations, mobile nav (marchantweb-inspired)
+[![Portfolio home page](docs/portfolio.png)](https://mundrukrishnaprasad.github.io)
+
+## What is included
+
+- Editorial-style hero with availability, location and current focus.
+- About, experience, skills, selected projects and education sections.
+- Project cards for the full-stack, Cloudflare and Chrome-extension work.
+- Responsive layout, scroll-reveal animation, project ring, marquee ticker and mobile navigation.
+- Resume download, GitHub, LinkedIn and email links.
+
+## Structure
+
+| File | Purpose |
+| --- | --- |
+| `index.html` | Page structure, content and inline theme config |
+| `style.css` | Theme variables, layout, project cards, animation and responsive rules |
+| `script.js` | Preloader, 3D project ring, scroll reveals, mobile navigation, copy actions |
+| `docs/portfolio.png` | Current home page screenshot |
+
+No framework and no build step. The page is plain HTML, CSS and JavaScript, with Tailwind loaded from its CDN for utility classes.
 
 ## Editing
-- All editable spots are marked in `index.html` with `<!-- ✏️ EDIT -->`
-- Content sections: About, Skills, Projects, Contact
-- Colors/theme live in `:root` variables in `style.css`
 
-## Deploy
-Pushes to `main` auto-publish via GitHub Pages (root of this branch).
+- Editable content is marked in `index.html` with `<!-- EDIT -->` comments.
+- Colours and spacing live in the `:root` variables at the top of `style.css`.
+- Sections: About, Experience, Skills, Projects, Education and Contact.
+- Update the resume link, social URLs and email in the hero and contact sections.
+
+## Run locally
+
+Open `index.html` directly, or serve the folder:
+
+```bash
+npx serve .
+```
+
+## Deployment
+
+Pushes to `main` publish automatically through GitHub Pages from the repository root.
+
+## Stack
+
+HTML · CSS · JavaScript · Tailwind CSS (CDN) · GitHub Pages
