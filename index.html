@@ -343,8 +343,21 @@
 <!-- Monumental Greeting + Name with masked reveal & balanced typography -->
 <div class="mask-reveal mb-8 sm:mb-12">
 <h1 class="mask-inner delay-2 font-display uppercase font-normal text-ink-primary hero-monumental select-none">
-<span class="transition-opacity duration-300" id="dynamic-greeting" style="opacity: 1;">Good evening</span>, <span class="block sm:inline">I'm Krishnaprasad.</span>
+<span class="transition-opacity duration-300" id="dynamic-greeting"></span>, <span class="block sm:inline">I'm Krishnaprasad.</span>
 </h1>
+<script>
+      // Set the greeting before first paint so no wrong greeting flashes in.
+      (function () {
+        var el = document.getElementById('dynamic-greeting');
+        if (!el) return;
+        var hour = new Date().getHours();
+        el.textContent = hour >= 5 && hour < 12
+          ? 'Good morning'
+          : hour >= 12 && hour < 17
+            ? 'Good afternoon'
+            : 'Good evening';
+      })();
+    </script>
 </div>
 <!-- Lead Narrative Sentence -->
 <div class="mask-reveal mb-10">
@@ -824,33 +837,21 @@
       const greetingEl = document.getElementById('dynamic-greeting');
       if (!greetingEl) return;
 
-      const targetGreeting = calculateGreeting();
+      function applyGreeting(nextGreeting) {
+        if (greetingEl.textContent.trim() === nextGreeting) return;
 
-      // If initial text matches, no swap needed
-      if (greetingEl.textContent.trim() === targetGreeting) {
-        return;
-      }
-
-      // Smooth client-side blur-free crossfade transition (300ms)
-      setTimeout(() => {
+        // Smooth client-side blur-free crossfade transition (300ms)
         greetingEl.style.opacity = '0';
         setTimeout(() => {
-          greetingEl.textContent = targetGreeting;
+          greetingEl.textContent = nextGreeting;
           greetingEl.style.opacity = '1';
         }, 150);
-      }, 350);
+      }
 
-      // Re-check every minute
-      setInterval(() => {
-        const nextGreeting = calculateGreeting();
-        if (greetingEl.textContent.trim() !== nextGreeting) {
-          greetingEl.style.opacity = '0';
-          setTimeout(() => {
-            greetingEl.textContent = nextGreeting;
-            greetingEl.style.opacity = '1';
-          }, 150);
-        }
-      }, 60000);
+      applyGreeting(calculateGreeting());
+
+      // Re-check every minute so the greeting follows the time of day.
+      setInterval(() => applyGreeting(calculateGreeting()), 60000);
     }
 
     // 2. HEADER SCROLL BORDER & SLIDING NAV UNDERLINE
