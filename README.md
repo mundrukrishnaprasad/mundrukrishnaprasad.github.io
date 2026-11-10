@@ -10,7 +10,7 @@ Personal developer portfolio: a single-page site covering about, experience, ski
 
 - Editorial-style hero with availability, location and current focus.
 - About, experience, skills, selected projects and education sections.
-- Project cards for the full-stack, Cloudflare and Chrome-extension work.
+- Project cards for the full-stack, Cloudflare and Chrome-extension work, including the live Dispatch and Sundial products, the multi-cloud failover demo and the AWS EKS lab.
 - Responsive layout, scroll-reveal animation, project ring, marquee ticker and mobile navigation.
 - Resume download, GitHub, LinkedIn and email links.
 

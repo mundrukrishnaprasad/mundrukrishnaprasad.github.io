@@ -1005,8 +1005,8 @@
           }
         });
       }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -40px 0px'
+        threshold: 0.01,
+        rootMargin: '0px 0px -60px 0px'
       });
 
       document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
@@ -1035,7 +1035,7 @@
         stack: ["Cloudflare Workers", "WebSockets", "Razorpay API", "Node.js"],
         result: "Executed sub-50ms edge request authentication with instant payment confirmation.",
         live: "",
-        github: "https://github.com/",
+        github: "",
         isPrivate: false
       },
       {
@@ -1057,12 +1057,68 @@
         stack: ["React.js", "Shadcn UI", "WebSockets", "Express.js"],
         result: "Synchronized concurrent state across active client sessions with automatic reconnects.",
         live: "",
-        github: "https://github.com/",
+        github: "",
+        isPrivate: false
+      },
+      {
+        number: "05",
+        name: "Dispatch — Grounded News Assistant",
+        problem: "Readers asking questions about a news archive got generic chatbot answers with no traceable sourcing.",
+        role: "Built the RAG pipeline on Cloudflare Workers: D1 story metadata, Vectorize passage retrieval, Workers AI generation and streamed citations.",
+        stack: ["Cloudflare Workers", "Workers AI", "Vectorize", "D1"],
+        result: "Indexes 21 stories and 53 passages, answers with inline citations and runs live on the edge.",
+        live: "https://dispatch.kp489292.workers.dev",
+        github: "https://github.com/mundrukrishnaprasad/dispatch",
+        isPrivate: false
+      },
+      {
+        number: "06",
+        name: "Sundial — Timesheet SaaS",
+        problem: "Teams billing by the hour tracked weekly time in spreadsheets, so approvals and utilization never matched the same record.",
+        role: "Designed and built the product with Next.js on Cloudflare Workers and Neon PostgreSQL: role-aware access, approval workflow, audit log and CSV export.",
+        stack: ["Next.js", "Cloudflare Workers", "Neon PostgreSQL", "TypeScript"],
+        result: "Complete employee, manager and admin workflow running live with seeded demo data and tests.",
+        live: "https://sundial.kp489292.workers.dev",
+        github: "https://github.com/mundrukrishnaprasad/sundial",
+        isPrivate: false
+      },
+      {
+        number: "07",
+        name: "Multi-Cloud Failover Demo",
+        problem: "A single-cloud deployment leaves no tested path back to service when the primary region fails.",
+        role: "Built a Next.js and PostgreSQL app with an Azure primary, AWS secondary, Azure Traffic Manager priority routing and GitHub Actions delivery.",
+        stack: ["Next.js", "PostgreSQL", "Azure", "AWS"],
+        result: "One hostname and a health endpoint that names the serving cloud; failover runbook ready, deployment pending assessment cloud access.",
+        live: "",
+        github: "https://github.com/mundrukrishnaprasad/project2",
+        isPrivate: false
+      },
+      {
+        number: "08",
+        name: "Three-Tier Microservices on AWS EKS",
+        problem: "Moving a polyglot microservice stack from local Docker Compose to Kubernetes needs a clear, repeatable deployment path.",
+        role: "Packaged the web, application and data tiers with health checks, log limits and a Locust load generator, then documented the ECR and EKS rollout.",
+        stack: ["Docker Compose", "Kubernetes", "AWS EKS", "Locust"],
+        result: "The full storefront runs locally on port 8080 and ships with a step-by-step EKS deployment path.",
+        live: "",
+        github: "https://github.com/mundrukrishnaprasad/Threetierappliaction_aws",
+        isPrivate: false
+      },
+      {
+        number: "09",
+        name: "News Chatbot — Legacy RAG Prototype",
+        problem: "An early attempt to answer questions over news coverage before the current retrieval stack existed.",
+        role: "Built an Express and Qdrant retrieval service with Redis session state and a React chat client on Gemini.",
+        stack: ["Express.js", "React.js", "Qdrant", "Redis"],
+        result: "Proved the retrieval and chat loop; superseded by Dispatch, which is now live.",
+        live: "",
+        github: "https://github.com/mundrukrishnaprasad/news-chatbot-backend",
         isPrivate: false
       }
     ];
 
     const projectsContainer = document.getElementById('projects-container');
+    const projectsTrack = document.getElementById('projects-indicator')?.parentElement;
     projectsContainer.innerHTML = projects.map(p => {
       const liveBtn = p.live 
         ? `<a href="${p.live}" target="_blank" rel="noopener noreferrer" class="editorial-link text-ink-primary hover:text-accent-light font-medium inline-flex items-center gap-1">Live <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>`
@@ -1130,6 +1186,10 @@
         </article>
       `;
     }).join('');
+
+    if (projectsTrack) {
+      projectsContainer.prepend(projectsTrack);
+    }
 
     // 5b. Projects vertical scroll line — gray track + red draw that fills
     // automatically with scroll (same mechanic as the Experience timeline)
