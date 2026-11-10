@@ -12,7 +12,7 @@ Personal developer portfolio: a single-page site covering about, experience, ski
 - About, experience, skills, selected projects and education sections.
 - Project cards for the full-stack, Cloudflare and Chrome-extension work, including the live Dispatch and Sundial products, the multi-cloud failover demo and the AWS EKS lab.
 - Responsive layout, scroll-reveal animation, project ring, marquee ticker and mobile navigation.
-- Resume download, GitHub, LinkedIn and email links.
+- GitHub, LinkedIn and email links.
 
 ## Structure
 
@@ -30,7 +30,7 @@ No framework and no build step. The page is plain HTML, CSS and JavaScript, with
 - Editable content is marked in `index.html` with `<!-- EDIT -->` comments.
 - Colours and spacing live in the `:root` variables at the top of `style.css`.
 - Sections: About, Experience, Skills, Projects, Education and Contact.
-- Update the resume link, social URLs and email in the hero and contact sections.
+- Update the social URLs and email in the hero and contact sections.
 
 ## Run locally
 
